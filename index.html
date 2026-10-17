@@ -1,0 +1,3316 @@
+<!DOCTYPE html>
+<html lang="id" class="h-full bg-slate-50">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aplikasi 7 Kebiasaan Anak Indonesia Hebat</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              500: '#0284c7',
+              600: '#0284c7',
+              700: '#0369a1',
+              800: '#075985',
+              900: '#0c4a6e',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- SheetJS untuk Import/Export Excel -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* Custom Scrollbar Stylings */
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 8px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 8px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    /* CSS Cetak Laporan Format Kertas A4 */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 15mm;
+      }
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        font-size: 11pt;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .print-only {
+        display: block !important;
+      }
+      .print-card {
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+      }
+    }
+
+    .print-only {
+      display: none;
+    }
+
+    /* Animasi Kelap-Kelip Notifikasi Pesan/Komentar/Balasan */
+    @keyframes blinkAlert {
+      0%, 100% { background-color: #ef4444; color: #ffffff; border-color: #b91c1c; box-shadow: 0 0 12px rgba(239, 68, 68, 0.9); transform: scale(1); }
+      50% { background-color: #f59e0b; color: #ffffff; border-color: #d97706; box-shadow: 0 0 6px rgba(245, 158, 11, 0.6); transform: scale(1.05); }
+    }
+    .animate-blink {
+      animation: blinkAlert 0.75s infinite ease-in-out;
+    }
+
+    /* Animasi Pop-Up Toast Notification */
+    @keyframes toastSlideIn {
+      from { transform: translateX(110%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes toastSlideOut {
+      from { transform: translateX(0); opacity: 1; }
+      to { transform: translateX(110%); opacity: 0; }
+    }
+    .toast-enter {
+      animation: toastSlideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .toast-exit {
+      animation: toastSlideOut 0.3s cubic-bezier(0.7, 0, 0.84, 0) forwards;
+    }
+  </style>
+</head>
+<body class="h-full flex flex-col text-slate-800 antialiased selection:bg-sky-500 selection:text-white relative">
+
+  <!-- SOUND SYNTHESIZER ENHANCED -->
+  <script>
+    function playNotificationSound(soundType = 'message') {
+      try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContext) return;
+        const ctx = new AudioContext();
+        
+        const now = ctx.currentTime;
+
+        if (soundType === 'group') {
+          [523.25, 659.25, 783.99].forEach((freq, idx) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, now + (idx * 0.08));
+            
+            gain.gain.setValueAtTime(0.25, now + (idx * 0.08));
+            gain.gain.exponentialRampToValueAtTime(0.001, now + (idx * 0.08) + 0.3);
+            
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            
+            osc.start(now + (idx * 0.08));
+            osc.stop(now + (idx * 0.08) + 0.3);
+          });
+
+        } else if (soundType === 'feedback') {
+          [880.00, 1174.66].forEach((freq, idx) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(freq, now + (idx * 0.12));
+            
+            gain.gain.setValueAtTime(0.3, now + (idx * 0.12));
+            gain.gain.exponentialRampToValueAtTime(0.001, now + (idx * 0.12) + 0.4);
+            
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            
+            osc.start(now + (idx * 0.12));
+            osc.stop(now + (idx * 0.12) + 0.4);
+          });
+
+        } else {
+          const osc1 = ctx.createOscillator();
+          const gain1 = ctx.createGain();
+          
+          osc1.type = 'sine';
+          osc1.frequency.setValueAtTime(523.25, now);
+          osc1.frequency.exponentialRampToValueAtTime(880, now + 0.15);
+          
+          gain1.gain.setValueAtTime(0.2, now);
+          gain1.gain.exponentialRampToValueAtTime(0.01, now + 0.35);
+          
+          osc1.connect(gain1);
+          gain1.connect(ctx.destination);
+          
+          osc1.start(now);
+          osc1.stop(now + 0.35);
+        }
+      } catch (e) {
+        console.log("Audio play prevented:", e);
+      }
+    }
+
+    // Helper Sisip Emoji ke Input
+    function insertEmoji(inputId, emoji) {
+      const el = document.getElementById(inputId);
+      if (el) {
+        const start = el.selectionStart || el.value.length;
+        const end = el.selectionEnd || el.value.length;
+        el.value = el.value.substring(0, start) + emoji + el.value.substring(end);
+        el.focus();
+        el.selectionStart = el.selectionEnd = start + emoji.length;
+      }
+    }
+  </script>
+
+  <!-- FLOATING TOAST NOTIFICATION CONTAINER -->
+  <div id="toastContainer" class="fixed top-5 right-5 z-50 flex flex-col gap-3 max-w-sm w-full pointer-events-none"></div>
+
+  <!-- APP CONTAINER -->
+  <div id="app" class="min-h-screen flex flex-col justify-between">
+    
+    <!-- TOP NAVBAR -->
+    <header id="mainNav" class="no-print hidden bg-white/90 backdrop-blur-md border-b border-slate-200 sticky top-0 z-30 shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex items-center space-x-3">
+            <img id="navSchoolLogo" src="https://cdn-icons-png.flaticon.com/512/2991/2991106.png" class="h-10 w-10 object-contain rounded-full bg-slate-100 p-1 border border-slate-200" alt="Logo Sekolah">
+            <div>
+              <h1 id="navSchoolName" class="font-bold text-slate-800 text-base leading-tight">SD NEGERI HEBAT</h1>
+              <p id="navRoleBadge" class="text-xs font-semibold text-sky-600">Portal Pengguna</p>
+            </div>
+          </div>
+
+          <div class="flex items-center space-x-3">
+            <button onclick="openModalUniversalChat()" class="relative px-3.5 py-2 bg-sky-50 text-sky-700 hover:bg-sky-100 font-bold rounded-xl border border-sky-200 text-xs flex items-center gap-2 transition-all shadow-sm">
+              <i class="fa-solid fa-comments text-sm"></i>
+              <span class="hidden sm:inline">Pusat Pesan & Group Chat</span>
+              <span id="navUnreadChatBadge" class="hidden px-2.5 py-0.5 rounded-full text-[10px] font-black animate-blink">
+                Pesan Baru!
+              </span>
+            </button>
+
+            <div class="flex items-center space-x-3 bg-slate-100/80 px-3 py-1.5 rounded-xl border border-slate-200">
+              <div class="w-8 h-8 rounded-lg bg-sky-600 text-white flex items-center justify-center font-bold text-sm shadow-sm" id="userAvatar">
+                U
+              </div>
+              <div class="hidden md:block text-left">
+                <div id="navUserName" class="text-xs font-bold text-slate-800 leading-tight">Nama User</div>
+                <div id="navUserDetail" class="text-[10px] text-slate-500">Role Info</div>
+              </div>
+              <button onclick="logout()" class="ml-2 text-slate-400 hover:text-red-600 p-1.5 transition-colors" title="Keluar / Logout">
+                <i class="fa-solid fa-right-from-bracket text-base"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-grow max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8">
+      
+      <!-- VIEW 1: MENU LOGIN -->
+      <div id="viewLogin" class="max-w-md mx-auto my-auto py-8">
+        <div class="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 space-y-6 text-center relative overflow-hidden">
+          <div class="absolute -top-12 -right-12 w-32 h-32 bg-sky-100 rounded-full blur-2xl opacity-60"></div>
+          <div class="absolute -bottom-12 -left-12 w-32 h-32 bg-indigo-100 rounded-full blur-2xl opacity-60"></div>
+
+          <div class="relative z-10 flex flex-col items-center">
+            <div class="w-24 h-24 mb-3 rounded-2xl bg-slate-50 p-3 shadow-inner border border-slate-200 flex items-center justify-center">
+              <img id="loginSchoolLogo" src="https://cdn-icons-png.flaticon.com/512/2991/2991106.png" class="max-h-full max-w-full object-contain" alt="Logo Sekolah">
+            </div>
+            <h2 id="loginSchoolName" class="text-xl font-extrabold text-slate-800 tracking-tight">SD NEGERI HEBAT</h2>
+            <p class="text-xs text-sky-600 font-semibold tracking-wide uppercase mt-0.5">Jurnal 7 Kebiasaan Anak Indonesia Hebat</p>
+          </div>
+
+          <div id="firebaseStatusBadge" class="hidden relative z-10 py-1 px-3 bg-emerald-50 text-emerald-700 text-[11px] font-bold rounded-full border border-emerald-200">
+            <i class="fa-solid fa-cloud text-emerald-600 mr-1"></i> Terhubung ke Firebase Firestore Realtime
+          </div>
+
+          <form id="formLogin" onsubmit="handleLogin(event)" class="space-y-4 text-left relative z-10">
+            <div>
+              <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Nama Pengguna (Username)</label>
+              <div class="relative">
+                <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400">
+                  <i class="fa-solid fa-user text-sm"></i>
+                </span>
+                <input type="text" id="loginUsername" required placeholder="Masukkan nama pengguna" class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 outline-none text-sm transition-all font-medium">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Kata Sandi (Password)</label>
+              <div class="relative">
+                <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center text-slate-400">
+                  <i class="fa-solid fa-lock text-sm"></i>
+                </span>
+                <input type="password" id="loginPassword" required placeholder="Masukkan kata sandi" class="w-full pl-10 pr-10 py-3 rounded-xl border border-slate-200 focus:border-sky-500 focus:ring-2 focus:ring-sky-200 outline-none text-sm transition-all font-medium">
+                <button type="button" onclick="togglePasswordVisibility('loginPassword', 'loginEyeIcon')" class="absolute inset-y-0 right-0 pr-3.5 flex items-center text-slate-400 hover:text-slate-600">
+                  <i id="loginEyeIcon" class="fa-solid fa-eye text-sm"></i>
+                </button>
+              </div>
+            </div>
+
+            <button type="submit" class="w-full py-3.5 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-xl shadow-lg shadow-sky-600/30 active:scale-[0.99] transition-all text-sm flex items-center justify-center space-x-2">
+              <span>Masuk Aplikasi</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </form>
+
+          <div class="text-[11px] text-slate-400 border-t border-slate-100 pt-4">
+            <p>Sistem Informasi Karakter Bangsa</p>
+            <p class="font-semibold text-slate-500">7 Kebiasaan Anak Indonesia Hebat</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIEW 2: DASHBOARD SISWA -->
+      <div id="viewSiswa" class="hidden space-y-6">
+        <div class="bg-gradient-to-r from-sky-600 to-indigo-700 rounded-3xl p-6 text-white shadow-lg relative overflow-hidden">
+          <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+              <span class="px-3 py-1 bg-white/20 rounded-full text-xs font-semibold backdrop-blur-md">Jurnal Harian Siswa</span>
+              <h2 id="siswaGreeting" class="text-2xl font-extrabold mt-2">Selamat Datang, Siswa!</h2>
+              <p id="siswaSubInfo" class="text-sky-100 text-sm font-medium">Mari lengkapi 7 Kebiasaan Anak Indonesia Hebat.</p>
+              
+              <!-- NAMA WALI KELAS DI BAGIAN ATAS BANNER SISWA -->
+              <div class="mt-2.5 inline-flex items-center gap-2 bg-white/15 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-white/20 text-xs font-bold text-amber-200 shadow-inner">
+                <i class="fa-solid fa-chalkboard-user text-amber-300"></i>
+                <span>Wali Kelas: <span id="siswaNamaWaliKelas" class="text-white font-extrabold">--</span></span>
+              </div>
+            </div>
+            
+            <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/20 text-center min-w-[220px]">
+              <label for="tglPengisianSiswa" class="block text-xs uppercase tracking-wider text-sky-200 font-bold mb-1">
+                Pilih Tanggal Pengisian:
+              </label>
+              <input type="date" id="tglPengisianSiswa" onchange="loadJournalSiswaByDate()" class="px-3 py-1.5 rounded-xl border border-white/30 bg-white text-slate-800 text-xs font-bold shadow-inner outline-none focus:ring-2 focus:ring-sky-300">
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div class="lg:col-span-2 bg-white rounded-3xl p-6 shadow-sm border border-slate-200 space-y-6">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-4">
+              <div>
+                <h3 class="font-extrabold text-slate-800 text-lg flex items-center gap-2">
+                  <i class="fa-solid fa-list-check text-sky-600"></i>
+                  <span>Form Isian 7 Kebiasaan</span>
+                </h3>
+                <p class="text-xs text-slate-500">Centang kotak checklist terlebih dahulu untuk mengaktifkan dan mengisinya.</p>
+              </div>
+              <span id="journalStatusBadge" class="px-3 py-1 rounded-full text-xs font-bold bg-amber-50 text-amber-700 border border-amber-200">Belum Dikirim</span>
+            </div>
+
+            <form id="formKebiasaan" onsubmit="simpanJurnalSiswa(event)" class="space-y-6">
+              
+              <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/50 hover:bg-slate-50 transition-colors">
+                <div class="flex items-start gap-3">
+                  <input type="checkbox" id="chkBangun" onchange="toggleHabitInput('chkBangun', 'timeBangun')" class="mt-1 w-5 h-5 text-sky-600 rounded border-slate-300 focus:ring-sky-500">
+                  <div class="flex-grow space-y-2">
+                    <label for="chkBangun" class="font-bold text-slate-800 text-sm cursor-pointer block">
+                      1. Bangun Pagi tepat waktu
+                    </label>
+                    <div class="flex items-center gap-3">
+                      <span class="text-xs text-slate-500">Pilih jam bangun pagi:</span>
+                      <input type="time" id="timeBangun" disabled class="px-3 py-1.5 rounded-lg border border-slate-300 text-sm bg-white disabled:bg-slate-100 disabled:text-slate-400 focus:ring-2 focus:ring-sky-500 outline-none">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/50 hover:bg-slate-50 transition-colors">
+                <div class="flex items-start gap-3">
+                  <input type="checkbox" id="chkIbadah" onchange="toggleIbadahInputs()" class="mt-1 w-5 h-5 text-sky-600 rounded border-slate-300 focus:ring-sky-500">
+                  <div class="flex-grow space-y-3">
+                    <label for="chkIbadah" class="font-bold text-slate-800 text-sm cursor-pointer block">
+                      2. Taat Beribadah
+                    </label>
+                    
+                    <div class="space-y-2">
+                      <label class="block text-xs font-semibold text-slate-600">Pilih Agama:</label>
+                      <select id="selAgama" disabled onchange="handleAgamaChange()" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-sm bg-white disabled:bg-slate-100 disabled:text-slate-400 focus:ring-2 focus:ring-sky-500 outline-none">
+                        <option value="">-- Pilih Agama --</option>
+                        <option value="Islam">Islam</option>
+                        <option value="Kristen Protestan">Kristen Protestan</option>
+                        <option value="Katolik">Katolik</option>
+                        <option value="Hindu">Hindu</option>
+                        <option value="Budha">Budha</option>
+                        <option value="Konghuchu">Konghuchu</option>
+                      </select>
+                    </div>
+
+                    <div id="boxIslamSholat" class="hidden p-3 bg-sky-50 rounded-xl border border-sky-100 space-y-2">
+                      <div class="text-xs font-bold text-sky-800">Checklist Sholat Wajib:</div>
+                      <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 text-xs">
+                        <label class="flex items-center gap-1.5 font-medium text-slate-700">
+                          <input type="checkbox" id="sholatSubuh" class="text-sky-600 rounded"> Subuh
+                        </label>
+                        <label class="flex items-center gap-1.5 font-medium text-slate-700">
+                          <input type="checkbox" id="sholatDzuhur" class="text-sky-600 rounded"> Dzuhur
+                        </label>
+                        <label class="flex items-center gap-1.5 font-medium text-slate-700">
+                          <input type="checkbox" id="sholatAshar" class="text-sky-600 rounded"> Ashar
+                        </label>
+                        <label class="flex items-center gap-1.5 font-medium text-slate-700">
+                          <input type="checkbox" id="sholatMagrib" class="text-sky-600 rounded"> Magrib
+                        </label>
+                        <label class="flex items-center gap-1.5 font-medium text-slate-700">
+                          <input type="checkbox" id="sholatIsya" class="text-sky-600 rounded"> Isya
+                        </label>
+                      </div>
+                    </div>
+
+                    <div id="boxNonIslam" class="hidden">
+                      <label class="block text-xs font-semibold text-slate-600 mb-1">Jenis Kegiatan Ibadah:</label>
+                      <textarea id="txtKegiatanIbadah" rows="2" placeholder="Contoh: Berdoa pagi, kebaktian, sembahyang..." class="w-full px-3 py-2 rounded-xl border border-slate-300 text-sm bg-white focus:ring-2 focus:ring-sky-500 outline-none"></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/50 hover:bg-slate-50 transition-colors">
+                <div class="flex items-start gap-3">
+                  <input type="checkbox" id="chkOlahraga" onchange="toggleHabitInput('chkOlahraga', 'txtOlahraga')" class="mt-1 w-5 h-5 text-sky-600 rounded border-slate-300 focus:ring-sky-500">
+                  <div class="flex-grow space-y-2">
+                    <label for="chkOlahraga" class="font-bold text-slate-800 text-sm cursor-pointer block">
+                      3. Berolahraga
+                    </label>
+                    <input type="text" id="txtOlahraga" disabled placeholder="Tuliskan jenis olahraga yang dilakukan (misal: senam, bersepeda, lari)" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-sm bg-white disabled:bg-slate-100 disabled:text-slate-400 focus:ring-2 focus:ring-sky-500 outline-none">
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/50 hover:bg-slate-50 transition-colors">
+                <div class="flex items-start gap-3">
+                  <input type="checkbox" id="chkMakan" onchange="toggleHabitInput('chkMakan', 'txtMakan')" class="mt-1 w-5 h-5 text-sky-600 rounded border-slate-300 focus:ring-sky-500">
+                  <div class="flex-grow space-y-2">
+                    <label for="chkMakan" class="font-bold text-slate-800 text-sm cursor-pointer block">
+                      4. Makan Sehat & Bergizi
+                    </label>
+                    <input type="text" id="txtMakan" disabled placeholder="Tuliskan jenis makanan sehat yang dikonsumsi (misal: nasi, sayur bayam, ikan, buah)" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-sm bg-white disabled:bg-slate-100 disabled:text-slate-400 focus:ring-2 focus:ring-sky-500 outline-none">
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/50 hover:bg-slate-50 transition-colors">
+                <div class="flex items-start gap-3">
+                  <input type="checkbox" id="chkBelajar" onchange="toggleHabitInput('chkBelajar', 'txtBelajar')" class="mt-1 w-5 h-5 text-sky-600 rounded border-slate-300 focus:ring-sky-500">
+                  <div class="flex-grow space-y-2">
+                    <label for="chkBelajar" class="font-bold text-slate-800 text-sm cursor-pointer block">
+                      5. Gemar Belajar
+                    </label>
+                    <input type="text" id="txtBelajar" disabled placeholder="Tuliskan jenis pelajaran/kegiatan belajar (misal: membaca buku cerita, belajar Matematika)" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-sm bg-white disabled:bg-slate-100 disabled:text-slate-400 focus:ring-2 focus:ring-sky-500 outline-none">
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/50 hover:bg-slate-50 transition-colors">
+                <div class="flex items-start gap-3">
+                  <input type="checkbox" id="chkMasyarakat" onchange="toggleHabitInput('chkMasyarakat', 'txtMasyarakat')" class="mt-1 w-5 h-5 text-sky-600 rounded border-slate-300 focus:ring-sky-500">
+                  <div class="flex-grow space-y-2">
+                    <label for="chkMasyarakat" class="font-bold text-slate-800 text-sm cursor-pointer block">
+                      6. Bermasyarakat / Kerja Sama
+                    </label>
+                    <input type="text" id="txtMasyarakat" disabled placeholder="Tuliskan kegiatan sosial/kemasyarakatan (misal: menyapa tetangga, membantu kerja bakti)" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-sm bg-white disabled:bg-slate-100 disabled:text-slate-400 focus:ring-2 focus:ring-sky-500 outline-none">
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/50 hover:bg-slate-50 transition-colors">
+                <div class="flex items-start gap-3">
+                  <input type="checkbox" id="chkTidur" onchange="toggleHabitInput('chkTidur', 'timeTidur')" class="mt-1 w-5 h-5 text-sky-600 rounded border-slate-300 focus:ring-sky-500">
+                  <div class="flex-grow space-y-2">
+                    <label for="chkTidur" class="font-bold text-slate-800 text-sm cursor-pointer block">
+                      7. Tidur Cepat / Tepat Waktu
+                    </label>
+                    <div class="flex items-center gap-3">
+                      <span class="text-xs text-slate-500">Pilih jam tidur malam:</span>
+                      <input type="time" id="timeTidur" disabled class="px-3 py-1.5 rounded-lg border border-slate-300 text-sm bg-white disabled:bg-slate-100 disabled:text-slate-400 focus:ring-2 focus:ring-sky-500 outline-none">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <button type="submit" class="w-full py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold rounded-2xl shadow-lg shadow-emerald-600/30 transition-all text-base flex items-center justify-center space-x-2">
+                <i class="fa-solid fa-paper-plane"></i>
+                <span>Simpan & Kirim Jurnal Harian</span>
+              </button>
+
+            </form>
+          </div>
+
+          <div class="lg:col-span-1 space-y-6">
+            <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200 space-y-4 relative">
+              <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                <h3 class="font-extrabold text-slate-800 text-sm flex items-center gap-2">
+                  <i class="fa-solid fa-comment-dots text-sky-600"></i>
+                  <span>Umpan Balik Harian Guru</span>
+                </h3>
+                <span id="badgeBlinkFeedbackHarian" class="hidden px-2 py-0.5 rounded-full text-[10px] font-black animate-blink">
+                  Respon Baru!
+                </span>
+              </div>
+
+              <!-- Kontainer Umpan Balik Siswa (SCROLLABLE CHAT HISTORY) -->
+              <div id="boxDisplayDailyFeedback" class="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-xs max-h-80 overflow-y-auto custom-scrollbar flex flex-col justify-center text-slate-400 text-center italic space-y-3">
+                Belum ada umpan balik dari Wali Kelas untuk jurnal tanggal ini.
+              </div>
+            </div>
+
+            <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200 space-y-4">
+              <div class="border-b border-slate-100 pb-3">
+                <h3 class="font-extrabold text-slate-800 text-sm flex items-center gap-2">
+                  <i class="fa-solid fa-comments text-sky-600"></i>
+                  <span>Pusat Pesan & Group Chat</span>
+                </h3>
+                <p class="text-xs text-slate-500">Komunikasi personal dan diskusi group rame-rame.</p>
+              </div>
+
+              <button onclick="openModalUniversalChat()" class="w-full py-3 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-xl text-xs shadow-md transition-all flex items-center justify-center gap-2">
+                <i class="fa-solid fa-users"></i>
+                <span>Buka Ruang Chat & Group</span>
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- VIEW 3: DASHBOARD GURU WALI KELAS -->
+      <div id="viewGuru" class="hidden space-y-6">
+        <div class="bg-gradient-to-r from-sky-700 to-indigo-800 rounded-3xl p-6 text-white shadow-lg flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <span class="px-3 py-1 bg-white/20 rounded-full text-xs font-semibold backdrop-blur-md">Portal Wali Kelas</span>
+            <h2 id="guruGreeting" class="text-2xl font-extrabold mt-2">Kelas --</h2>
+            <p id="guruSubInfo" class="text-sky-100 text-sm">Pantau kebiasaan harian dan kelola data siswa kelas Anda.</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="openModalCetakLaporan('guru')" class="px-4 py-2.5 bg-emerald-500 text-white font-bold rounded-xl text-xs hover:bg-emerald-600 transition-all shadow-md flex items-center gap-2">
+              <i class="fa-solid fa-print"></i>
+              <span>Cetak Laporan Kelas</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200 space-y-6">
+          <div class="flex border-b border-slate-200 overflow-x-auto">
+            <button id="guruTabBtnMonitoring" onclick="switchGuruTab('monitoring')" class="py-3 px-6 text-sm font-extrabold border-b-2 border-sky-600 text-sky-600 transition-colors flex items-center gap-2 whitespace-nowrap">
+              <i class="fa-solid fa-chart-line"></i>
+              <span>Pemantauan Harian Siswa</span>
+            </button>
+            <button id="guruTabBtnSiswa" onclick="switchGuruTab('siswa')" class="py-3 px-6 text-sm font-extrabold border-b-2 border-transparent text-slate-400 hover:text-slate-600 transition-colors flex items-center gap-2 whitespace-nowrap">
+              <i class="fa-solid fa-user-graduate"></i>
+              <span>Data Siswa Kelas</span>
+            </button>
+          </div>
+
+          <div id="guruTabContentMonitoring" class="space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-50 p-4 rounded-2xl border border-slate-200">
+              <div>
+                <h3 class="font-extrabold text-slate-800 text-base">Status Pengisian 7 Kebiasaan Harian</h3>
+                <p class="text-xs text-slate-500">Pilih tanggal untuk melihat rekap kebiasaan harian siswa.</p>
+              </div>
+              <div class="flex items-center gap-3 flex-wrap">
+                <!-- FILTER DATA PER HALAMAN GURU MONITORING -->
+                <div class="flex items-center gap-1.5 text-xs text-slate-600 font-bold shrink-0">
+                  <span>Tampilkan:</span>
+                  <select id="limitGuruMonitoring" onchange="changeGuruMonitoringLimit(this.value)" class="px-2.5 py-1.5 rounded-xl border border-slate-300 bg-white font-bold text-xs outline-none focus:ring-2 focus:ring-sky-500">
+                    <option value="10">10 / hal</option>
+                    <option value="30">30 / hal</option>
+                    <option value="50">50 / hal</option>
+                    <option value="100">100 / hal</option>
+                  </select>
+                </div>
+
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-bold text-slate-600">Pilih Tanggal:</span>
+                  <input type="date" id="filterTanggalGuru" onchange="loadDataGuruMonitoring()" class="px-3 py-1.5 rounded-xl border border-slate-300 text-xs font-bold focus:ring-2 focus:ring-sky-500 outline-none">
+                </div>
+              </div>
+            </div>
+
+            <!-- CONTAINER DENGAN MAX-HEIGHT SCROLL / SLIDER MAKSIMAL 520PX -->
+            <div class="overflow-auto max-h-[520px] custom-scrollbar border border-slate-200 rounded-2xl shadow-inner">
+              <table class="w-full text-left border-collapse">
+                <thead class="sticky top-0 z-10">
+                  <tr class="bg-slate-100 text-slate-600 text-xs uppercase font-extrabold border-b border-slate-200 shadow-sm">
+                    <th class="py-3 px-3 bg-slate-100">No</th>
+                    <th class="py-3 px-3 bg-slate-100">NIS/NISN</th>
+                    <th class="py-3 px-3 bg-slate-100">Nama Siswa</th>
+                    <th class="py-3 px-3 bg-slate-100 text-center">Status Jurnal</th>
+                    <th class="py-3 px-3 bg-slate-100 text-center">Skor Kebiasaan</th>
+                    <th class="py-3 px-3 bg-slate-100 text-center">Umpan Balik & Balasan</th>
+                  </tr>
+                </thead>
+                <tbody id="tableBodyGuruMonitoring" class="text-xs divide-y divide-slate-100 font-medium bg-white">
+                  <!-- Dynamic Rows -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- KONTROL PAGINATION GURU MONITORING -->
+            <div id="paginationGuruMonitoring" class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-slate-100 text-xs font-semibold text-slate-600">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <div id="guruTabContentSiswa" class="hidden space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-50 p-4 rounded-2xl border border-slate-200">
+              <div>
+                <h3 class="font-extrabold text-slate-800 text-base">Kelola Daftar Siswa Kelas</h3>
+                <p class="text-xs text-slate-500">Tambah, reset password, atau hapus data siswa di kelas Anda.</p>
+              </div>
+              <div class="flex items-center gap-3 flex-wrap">
+                <!-- FILTER DATA PER HALAMAN GURU KELAS SISWA -->
+                <div class="flex items-center gap-1.5 text-xs text-slate-600 font-bold shrink-0">
+                  <span>Tampilkan:</span>
+                  <select id="limitGuruKelasSiswa" onchange="changeGuruKelasSiswaLimit(this.value)" class="px-2.5 py-1.5 rounded-xl border border-slate-300 bg-white font-bold text-xs outline-none focus:ring-2 focus:ring-sky-500">
+                    <option value="10">10 / hal</option>
+                    <option value="30">30 / hal</option>
+                    <option value="50">50 / hal</option>
+                    <option value="100">100 / hal</option>
+                  </select>
+                </div>
+
+                <button onclick="openModalTambahSiswaGuru()" class="px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-xl text-xs transition-all shadow-md flex items-center gap-2">
+                  <i class="fa-solid fa-user-plus"></i>
+                  <span>Tambah Siswa Kelas</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- CONTAINER DENGAN MAX-HEIGHT SCROLL / SLIDER MAKSIMAL 520PX -->
+            <div class="overflow-auto max-h-[520px] custom-scrollbar border border-slate-200 rounded-2xl shadow-inner">
+              <table class="w-full text-left border-collapse">
+                <thead class="sticky top-0 z-10">
+                  <tr class="bg-slate-100 text-slate-600 text-xs uppercase font-extrabold border-b border-slate-200 shadow-sm">
+                    <th class="py-3 px-3 bg-slate-100">No</th>
+                    <th class="py-3 px-3 bg-slate-100">NIS/NISN</th>
+                    <th class="py-3 px-3 bg-slate-100">Nama Lengkap Siswa</th>
+                    <th class="py-3 px-3 bg-slate-100">Username</th>
+                    <th class="py-3 px-3 bg-slate-100">Password</th>
+                    <th class="py-3 px-3 bg-slate-100 text-center">Aksi / Kelola</th>
+                  </tr>
+                </thead>
+                <tbody id="tableBodyGuruDataSiswa" class="text-xs divide-y divide-slate-100 font-medium bg-white">
+                  <!-- Dynamic Rows -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- KONTROL PAGINATION GURU KELAS SISWA -->
+            <div id="paginationGuruKelasSiswa" class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-slate-100 text-xs font-semibold text-slate-600">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- VIEW 4: DASHBOARD ADMIN SEKOLAH -->
+      <div id="viewAdmin" class="hidden space-y-6">
+        <div class="bg-gradient-to-r from-slate-800 to-slate-900 rounded-3xl p-6 text-white shadow-lg flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <span class="px-3 py-1 bg-amber-500/20 text-amber-300 rounded-full text-xs font-bold border border-amber-500/30">Administrator Utama</span>
+            <h2 class="text-2xl font-extrabold mt-2">Pengaturan & Kelola Data Sekolah</h2>
+            <p class="text-slate-300 text-sm">Kelola pengguna guru, siswa, pengaturan kop sekolah, dan laporan semua kelas.</p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2">
+            <button onclick="openModalPengaturanSekolah()" class="px-4 py-2.5 bg-amber-500 hover:bg-amber-600 text-slate-950 font-extrabold rounded-xl text-xs transition-all shadow-md flex items-center gap-2">
+              <i class="fa-solid fa-school"></i>
+              <span>Pengaturan Sekolah</span>
+            </button>
+            <button onclick="openModalCetakLaporan('admin')" class="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-xs transition-all shadow-md flex items-center gap-2">
+              <i class="fa-solid fa-print"></i>
+              <span>Laporan Semua Kelas</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200 space-y-6">
+          <div class="flex border-b border-slate-200 overflow-x-auto">
+            <button id="tabBtnSiswa" onclick="switchAdminTab('siswa')" class="py-3 px-6 text-sm font-extrabold border-b-2 border-sky-600 text-sky-600 transition-colors flex items-center gap-2 whitespace-nowrap">
+              <i class="fa-solid fa-user-graduate"></i>
+              <span>Data Siswa</span>
+            </button>
+            <button id="tabBtnGuru" onclick="switchAdminTab('guru')" class="py-3 px-6 text-sm font-extrabold border-b-2 border-transparent text-slate-400 hover:text-slate-600 transition-colors flex items-center gap-2 whitespace-nowrap">
+              <i class="fa-solid fa-chalkboard-user"></i>
+              <span>Data Guru / Wali Kelas</span>
+            </button>
+            <button id="tabBtnAccount" onclick="switchAdminTab('account')" class="py-3 px-6 text-sm font-extrabold border-b-2 border-transparent text-slate-400 hover:text-slate-600 transition-colors flex items-center gap-2 ml-auto whitespace-nowrap">
+              <i class="fa-solid fa-key"></i>
+              <span>Akun Admin</span>
+            </button>
+          </div>
+
+          <!-- TAB SISWA ADMIN -->
+          <div id="tabContentSiswa" class="space-y-4">
+            <div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3 bg-slate-50 p-4 rounded-2xl border border-slate-200">
+              <div class="flex-grow relative">
+                <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
+                  <i class="fa-solid fa-magnifying-glass text-xs"></i>
+                </span>
+                <input type="text" id="searchSiswaAdmin" oninput="window.state.adminPagination.siswaPage=1; renderTableAdminSiswa()" placeholder="Cari Siswa berdasarkan NIS, NISN, Nama, atau Kelas..." class="w-full pl-9 pr-4 py-2 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-sky-500 outline-none">
+              </div>
+
+              <div class="flex items-center gap-2 flex-wrap">
+                <!-- FILTER DATA PER HALAMAN SISWA -->
+                <div class="flex items-center gap-1.5 text-xs text-slate-600 font-bold shrink-0">
+                  <span>Tampilkan:</span>
+                  <select id="limitSiswaAdmin" onchange="changeSiswaLimit(this.value)" class="px-2.5 py-2 rounded-xl border border-slate-300 bg-white font-bold text-xs outline-none focus:ring-2 focus:ring-sky-500">
+                    <option value="10">10 / hal</option>
+                    <option value="30">30 / hal</option>
+                    <option value="50">50 / hal</option>
+                    <option value="100">100 / hal</option>
+                  </select>
+                </div>
+
+                <button onclick="openModalTambahUser('siswa')" class="px-3.5 py-2 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-xl text-xs transition-all flex items-center gap-1.5 shadow-sm">
+                  <i class="fa-solid fa-plus"></i>
+                  <span>Tambah Siswa</span>
+                </button>
+                <label class="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-xs transition-all cursor-pointer flex items-center gap-1.5 shadow-sm">
+                  <i class="fa-solid fa-file-excel"></i>
+                  <span>Upload Excel Siswa</span>
+                  <input type="file" accept=".xlsx, .xls, .csv" onchange="handleExcelUpload(event, 'siswa')" class="hidden">
+                </label>
+                <button onclick="downloadSampleExcel('siswa')" class="px-3 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold rounded-xl text-xs transition-colors">
+                  <i class="fa-solid fa-download"></i> Format Excel
+                </button>
+              </div>
+            </div>
+
+            <!-- CONTAINER DENGAN MAX-HEIGHT SCROLL / SLIDER MAKSIMAL 520PX -->
+            <div class="overflow-auto max-h-[520px] custom-scrollbar border border-slate-200 rounded-2xl shadow-inner">
+              <table class="w-full text-left border-collapse">
+                <thead class="sticky top-0 z-10">
+                  <tr class="bg-slate-100 text-slate-600 text-xs uppercase font-extrabold border-b border-slate-200 shadow-sm">
+                    <th class="py-3 px-3 bg-slate-100">No</th>
+                    <th class="py-3 px-3 bg-slate-100">NIS/NISN</th>
+                    <th class="py-3 px-3 bg-slate-100">Nama Lengkap</th>
+                    <th class="py-3 px-3 bg-slate-100">Kelas</th>
+                    <th class="py-3 px-3 bg-slate-100">Username</th>
+                    <th class="py-3 px-3 bg-slate-100">Password</th>
+                    <th class="py-3 px-3 bg-slate-100 text-center">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="tableBodyAdminSiswa" class="text-xs divide-y divide-slate-100 font-medium bg-white">
+                  <!-- Dynamic Rows -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- KONTROL PAGINATION SISWA -->
+            <div id="paginationSiswaAdmin" class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-slate-100 text-xs font-semibold text-slate-600">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- TAB GURU ADMIN -->
+          <div id="tabContentGuru" class="hidden space-y-4">
+            <div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3 bg-slate-50 p-4 rounded-2xl border border-slate-200">
+              <div class="flex-grow relative">
+                <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
+                  <i class="fa-solid fa-magnifying-glass text-xs"></i>
+                </span>
+                <input type="text" id="searchGuruAdmin" oninput="window.state.adminPagination.guruPage=1; renderTableAdminGuru()" placeholder="Cari Guru berdasarkan NIP, Nama, atau Wali Kelas..." class="w-full pl-9 pr-4 py-2 rounded-xl border border-slate-200 text-xs focus:ring-2 focus:ring-sky-500 outline-none">
+              </div>
+
+              <div class="flex items-center gap-2 flex-wrap">
+                <!-- FILTER DATA PER HALAMAN GURU -->
+                <div class="flex items-center gap-1.5 text-xs text-slate-600 font-bold shrink-0">
+                  <span>Tampilkan:</span>
+                  <select id="limitGuruAdmin" onchange="changeGuruLimit(this.value)" class="px-2.5 py-2 rounded-xl border border-slate-300 bg-white font-bold text-xs outline-none focus:ring-2 focus:ring-sky-500">
+                    <option value="10">10 / hal</option>
+                    <option value="30">30 / hal</option>
+                    <option value="50">50 / hal</option>
+                    <option value="100">100 / hal</option>
+                  </select>
+                </div>
+
+                <button onclick="openModalTambahUser('guru')" class="px-3.5 py-2 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-xl text-xs transition-all flex items-center gap-1.5 shadow-sm">
+                  <i class="fa-solid fa-plus"></i>
+                  <span>Tambah Guru</span>
+                </button>
+                <label class="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-xs transition-all cursor-pointer flex items-center gap-1.5 shadow-sm">
+                  <i class="fa-solid fa-file-excel"></i>
+                  <span>Upload Excel Guru</span>
+                  <input type="file" accept=".xlsx, .xls, .csv" onchange="handleExcelUpload(event, 'guru')" class="hidden">
+                </label>
+                <button onclick="downloadSampleExcel('guru')" class="px-3 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 font-semibold rounded-xl text-xs transition-colors">
+                  <i class="fa-solid fa-download"></i> Format Excel
+                </button>
+              </div>
+            </div>
+
+            <!-- CONTAINER DENGAN MAX-HEIGHT SCROLL / SLIDER MAKSIMAL 520PX -->
+            <div class="overflow-auto max-h-[520px] custom-scrollbar border border-slate-200 rounded-2xl shadow-inner">
+              <table class="w-full text-left border-collapse">
+                <thead class="sticky top-0 z-10">
+                  <tr class="bg-slate-100 text-slate-600 text-xs uppercase font-extrabold border-b border-slate-200 shadow-sm">
+                    <th class="py-3 px-3 bg-slate-100">No</th>
+                    <th class="py-3 px-3 bg-slate-100">NIP</th>
+                    <th class="py-3 px-3 bg-slate-100">Nama Lengkap Guru</th>
+                    <th class="py-3 px-3 bg-slate-100">Wali Kelas</th>
+                    <th class="py-3 px-3 bg-slate-100">Username</th>
+                    <th class="py-3 px-3 bg-slate-100">Password</th>
+                    <th class="py-3 px-3 bg-slate-100 text-center">Aksi</th>
+                  </tr>
+                </thead>
+                <tbody id="tableBodyAdminGuru" class="text-xs divide-y divide-slate-100 font-medium bg-white">
+                  <!-- Dynamic Rows -->
+                </tbody>
+              </table>
+            </div>
+
+            <!-- KONTROL PAGINATION GURU -->
+            <div id="paginationGuruAdmin" class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-slate-100 text-xs font-semibold text-slate-600">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <div id="tabContentAccount" class="hidden max-w-md mx-auto space-y-4 py-4">
+            <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200 space-y-4">
+              <h4 class="font-extrabold text-slate-800 text-sm flex items-center gap-2">
+                <i class="fa-solid fa-shield-halved text-sky-600"></i>
+                <span>Ubah Kredensial Admin</span>
+              </h4>
+              <p class="text-xs text-slate-500">Standar username & password awal adalah <span class="font-bold text-slate-700">admin / admin</span>.</p>
+
+              <form onsubmit="handleUpdateAdminAccount(event)" class="space-y-4">
+                <div>
+                  <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Username Admin Baru</label>
+                  <input type="text" id="txtAdminUsername" required class="w-full px-3 py-2.5 rounded-xl border border-slate-300 text-xs font-semibold focus:ring-2 focus:ring-sky-500 outline-none">
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Password Admin Baru</label>
+                  <div class="relative">
+                    <input type="password" id="txtAdminPassword" required class="w-full pl-3 pr-10 py-2.5 rounded-xl border border-slate-300 text-xs font-semibold focus:ring-2 focus:ring-sky-500 outline-none">
+                    <button type="button" onclick="togglePasswordVisibility('txtAdminPassword', 'eyeAdminPass')" class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400">
+                      <i id="eyeAdminPass" class="fa-solid fa-eye text-xs"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <button type="submit" class="w-full py-3 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-xl text-xs shadow-md transition-all">
+                  Simpan Perubahan Admin
+                </button>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- MODAL UMPAN BALIK HARIAN GURU -->
+      <div id="modalDailyFeedbackGuru" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-100 space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <div>
+              <h3 id="modalFeedbackStudentName" class="font-extrabold text-slate-800 text-base">Respon Harian Siswa</h3>
+              <p id="modalFeedbackDate" class="text-xs text-sky-600 font-bold">Tanggal: --</p>
+            </div>
+            <button onclick="closeModalDailyFeedbackGuru()" class="text-slate-400 hover:text-slate-600 p-1">
+              <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+          </div>
+
+          <!-- CONTAINER RIWAYAT CHAT/RESPON HARIAN DENGAN SCROLLBAR LENGKAP -->
+          <div id="boxDailyFeedbackHistory" class="max-h-60 overflow-y-auto space-y-2.5 pr-1 custom-scrollbar">
+            <!-- Dynamic Rendered Chat Thread Messages -->
+          </div>
+
+          <form onsubmit="handleSaveDailyFeedback(event)" class="space-y-3 pt-1">
+            <input type="hidden" id="feedbackStudentId">
+            <input type="hidden" id="feedbackJournalDate">
+
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <label class="block text-xs font-bold text-slate-600 uppercase">Catatan / Umpan Balik Guru:</label>
+                <!-- BAR EMOJI CEPAT GURU -->
+                <div class="flex items-center gap-1 text-sm bg-slate-100/80 px-2 py-0.5 rounded-lg border border-slate-200">
+                  <button type="button" onclick="insertEmoji('txtDailyFeedbackContent', '👍')" class="hover:scale-125 transition-transform" title="Jempol">👍</button>
+                  <button type="button" onclick="insertEmoji('txtDailyFeedbackContent', '👏')" class="hover:scale-125 transition-transform" title="Tepuk Tangan">👏</button>
+                  <button type="button" onclick="insertEmoji('txtDailyFeedbackContent', '🌟')" class="hover:scale-125 transition-transform" title="Bintang">🌟</button>
+                  <button type="button" onclick="insertEmoji('txtDailyFeedbackContent', '🔥')" class="hover:scale-125 transition-transform" title="Semangat">🔥</button>
+                  <button type="button" onclick="insertEmoji('txtDailyFeedbackContent', '😊')" class="hover:scale-125 transition-transform" title="Senyum">😊</button>
+                  <button type="button" onclick="insertEmoji('txtDailyFeedbackContent', '💪')" class="hover:scale-125 transition-transform" title="Kuat">💪</button>
+                  <button type="button" onclick="insertEmoji('txtDailyFeedbackContent', '⭐')" class="hover:scale-125 transition-transform" title="Star">⭐</button>
+                  <button type="button" onclick="insertEmoji('txtDailyFeedbackContent', '❤️')" class="hover:scale-125 transition-transform" title="Love">❤️</button>
+                </div>
+              </div>
+              <!-- TEKAN ENTER UNTUK MENGIRIM PESAN GURU -->
+              <textarea id="txtDailyFeedbackContent" rows="3" onkeydown="if(event.key === 'Enter' && !event.shiftKey){ event.preventDefault(); handleSaveDailyFeedback(event); }" placeholder="Tuliskan apresiasi, motivasi, atau masukan untuk siswa... (Tekan Enter untuk kirim, Shift+Enter untuk baris baru)" class="w-full p-3 rounded-xl border border-slate-300 text-xs focus:ring-2 focus:ring-sky-500 outline-none font-medium"></textarea>
+            </div>
+
+            <div class="flex items-center gap-2 pt-2">
+              <button type="button" onclick="closeModalDailyFeedbackGuru()" class="w-1/2 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold rounded-xl text-xs transition-colors">Tutup</button>
+              <button type="submit" class="w-1/2 py-2.5 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-xl text-xs shadow-md shadow-sky-600/30 transition-all flex items-center justify-center gap-1.5">
+                <i class="fa-solid fa-paper-plane text-xs"></i>
+                <span>Kirim Umpan Balik</span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- MODAL CHAT UMUM & GROUP -->
+      <div id="modalUniversalChat" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-3xl w-full p-6 shadow-2xl border border-slate-100 flex flex-col h-[650px] overflow-hidden">
+          
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <div>
+              <h3 class="font-extrabold text-slate-800 text-base flex items-center gap-2">
+                <i class="fa-solid fa-comments text-sky-600"></i>
+                <span>Pusat Pesan & Group Chat</span>
+              </h3>
+              <p class="text-xs text-slate-500">Pilih komunikasi Personal (1-on-1) atau Diskusi Group bersama.</p>
+            </div>
+            <button onclick="closeModalUniversalChat()" class="text-slate-400 hover:text-slate-600 p-1">
+              <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+          </div>
+
+          <div class="flex border-b border-slate-200 mt-2">
+            <button id="btnChatModePersonal" onclick="switchChatMode('personal')" class="w-1/2 py-2.5 text-xs font-extrabold border-b-2 border-sky-600 text-sky-600 transition-colors flex items-center justify-center gap-2">
+              <i class="fa-solid fa-user"></i>
+              <span>Chat Personal (1-on-1)</span>
+            </button>
+            <button id="btnChatModeGroup" onclick="switchChatMode('group')" class="w-1/2 py-2.5 text-xs font-extrabold border-b-2 border-transparent text-slate-400 hover:text-slate-600 transition-colors flex items-center justify-center gap-2 relative">
+              <i class="fa-solid fa-users"></i>
+              <span>Chat Group / Komunitas</span>
+              <span id="badgeGroupChatUnread" class="hidden px-2 py-0.5 rounded-full text-[9px] font-black animate-blink">New</span>
+            </button>
+          </div>
+
+          <div id="boxPersonalFilter" class="py-3 border-b border-slate-100 bg-slate-50 px-4 rounded-2xl my-2 grid grid-cols-1 sm:grid-cols-3 gap-2">
+            <div>
+              <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">1. Pilih Kategori:</label>
+              <select id="selChatCategory" onchange="handleCategoryChange()" class="w-full px-2.5 py-1.5 rounded-xl border border-slate-300 text-xs font-bold focus:ring-2 focus:ring-sky-500 outline-none bg-white">
+                <option value="guru">Kategori Guru</option>
+                <option value="kelas">Kategori Kelas / Siswa</option>
+                <option value="admin">Kategori Admin</option>
+              </select>
+            </div>
+
+            <div id="boxSubSelectClass" class="hidden">
+              <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">2. Pilih Kelas:</label>
+              <select id="selChatClass" onchange="handleClassSelectChange()" class="w-full px-2.5 py-1.5 rounded-xl border border-slate-300 text-xs font-bold focus:ring-2 focus:ring-sky-500 outline-none bg-white">
+              </select>
+            </div>
+
+            <div id="boxSelectTargetUser">
+              <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">3. Pilih Pengguna Target:</label>
+              <select id="selChatTargetUser" onchange="renderChatHistory()" class="w-full px-2.5 py-1.5 rounded-xl border border-slate-300 text-xs font-bold focus:ring-2 focus:ring-sky-500 outline-none bg-white">
+              </select>
+            </div>
+          </div>
+
+          <div id="boxGroupFilter" class="hidden py-3 border-b border-slate-100 bg-slate-50 px-4 rounded-2xl my-2">
+            <label class="block text-[10px] font-bold text-slate-500 uppercase mb-1">Pilih Saluran Group Chat:</label>
+            <select id="selGroupChannel" onchange="renderGroupChatHistory()" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs font-bold focus:ring-2 focus:ring-sky-500 outline-none bg-white">
+              <option value="group_school">📢 Group Chat Seluruh Sekolah (Pengumuman & Diskusi Umum)</option>
+              <option value="group_class">🏫 Group Chat Kelas (Siswa & Wali Kelas)</option>
+              <option value="group_teachers">👨‍🏫 Group Diskusi Guru & Admin</option>
+            </select>
+          </div>
+
+          <div id="boxUniversalChatHistory" class="flex-grow overflow-y-auto py-4 space-y-3 px-3 my-1 bg-slate-50/60 rounded-2xl border border-slate-100 custom-scrollbar">
+          </div>
+
+          <!-- FORM DENGAN EMOJI BAR UNTUK PUSAT PESAN -->
+          <div class="pt-2 space-y-2">
+            <div class="flex items-center gap-1.5 overflow-x-auto py-1 px-3 bg-slate-100/70 rounded-xl border border-slate-200/60 text-base">
+              <span class="text-[10px] font-bold text-slate-400 mr-1 shrink-0">Emoji Cepat:</span>
+              <button type="button" onclick="insertEmoji('inputChatText', '😊')" class="hover:scale-125 transition-transform" title="Senyum">😊</button>
+              <button type="button" onclick="insertEmoji('inputChatText', '👍')" class="hover:scale-125 transition-transform" title="Siap">👍</button>
+              <button type="button" onclick="insertEmoji('inputChatText', '👏')" class="hover:scale-125 transition-transform" title="Hebat">👏</button>
+              <button type="button" onclick="insertEmoji('inputChatText', '🔥')" class="hover:scale-125 transition-transform" title="Semangat">🔥</button>
+              <button type="button" onclick="insertEmoji('inputChatText', '❤️')" class="hover:scale-125 transition-transform" title="Love">❤️</button>
+              <button type="button" onclick="insertEmoji('inputChatText', '🎉')" class="hover:scale-125 transition-transform" title="Selamat">🎉</button>
+              <button type="button" onclick="insertEmoji('inputChatText', '🌟')" class="hover:scale-125 transition-transform" title="Bintang">🌟</button>
+              <button type="button" onclick="insertEmoji('inputChatText', '💡')" class="hover:scale-125 transition-transform" title="Ide">💡</button>
+              <button type="button" onclick="insertEmoji('inputChatText', '📌')" class="hover:scale-125 transition-transform" title="Penting">📌</button>
+            </div>
+
+            <form onsubmit="handleSendChatMessage(event)" class="flex items-center gap-2">
+              <input type="text" id="inputChatText" required placeholder="Ketik pesan / diskusi..." class="flex-grow px-4 py-3 rounded-xl border border-slate-200 text-xs font-medium focus:ring-2 focus:ring-sky-500 outline-none">
+              <button type="submit" class="px-5 py-3 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-xl text-xs shadow-md transition-all flex items-center gap-1.5">
+                <span>Kirim</span>
+                <i class="fa-solid fa-paper-plane text-xs"></i>
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- MODAL RESET / UBAH USERNAME & PASSWORD -->
+      <div id="modalResetCredentials" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full overflow-hidden shadow-2xl border border-slate-100">
+          <div class="bg-gradient-to-r from-indigo-600 via-sky-600 to-purple-600 p-6 text-white relative">
+            <button onclick="closeModalResetCredentials()" class="absolute top-4 right-4 text-white/80 hover:text-white bg-white/10 rounded-full p-1.5 transition-colors">
+              <i class="fa-solid fa-xmark text-base"></i>
+            </button>
+            <div class="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center text-xl mb-3 shadow-inner">
+              <i class="fa-solid fa-key text-amber-300"></i>
+            </div>
+            <h3 class="text-lg font-black tracking-tight">Atur Ulang Kredensial User</h3>
+            <p class="text-xs text-sky-100 mt-0.5">Ubah nama pengguna dan kata sandi akun terpilih.</p>
+          </div>
+
+          <div class="p-6 space-y-4">
+            <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200 flex items-center space-x-3">
+              <div id="resetPreviewAvatar" class="w-10 h-10 rounded-xl bg-sky-600 text-white flex items-center justify-center font-bold text-sm">
+                U
+              </div>
+              <div class="flex-grow">
+                <div id="resetPreviewName" class="text-xs font-bold text-slate-800">Nama Pengguna</div>
+                <div id="resetPreviewRole" class="text-[11px] text-slate-500">Role | NIS/NIP</div>
+              </div>
+            </div>
+
+            <form onsubmit="handleSaveResetCredentials(event)" class="space-y-4">
+              <input type="hidden" id="resetUserId">
+
+              <div>
+                <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Nama Pengguna (Username) Baru</label>
+                <input type="text" id="resetUsername" required class="w-full px-3 py-2.5 rounded-xl border border-slate-300 text-xs font-bold focus:ring-2 focus:ring-sky-500 outline-none">
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Kata Sandi (Password) Baru</label>
+                <div class="relative">
+                  <input type="password" id="resetPassword" required oninput="checkPasswordStrength(this.value)" class="w-full pl-3 pr-10 py-2.5 rounded-xl border border-slate-300 text-xs font-bold focus:ring-2 focus:ring-sky-500 outline-none">
+                  <button type="button" onclick="togglePasswordVisibility('resetPassword', 'resetEyeIcon')" class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600">
+                    <i id="resetEyeIcon" class="fa-solid fa-eye text-xs"></i>
+                  </button>
+                </div>
+                
+                <div class="mt-2 space-y-1">
+                  <div class="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
+                    <div id="passStrengthBar" class="h-full w-0 bg-red-500 transition-all duration-300"></div>
+                  </div>
+                  <div class="flex justify-between text-[10px] text-slate-400 font-semibold">
+                    <span>Kekuatan Password:</span>
+                    <span id="passStrengthText" class="text-slate-500">Sangat Lemah</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex items-center space-x-3 pt-2">
+                <button type="button" onclick="closeModalResetCredentials()" class="w-1/2 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold rounded-xl text-xs transition-colors">
+                  Batal
+                </button>
+                <button type="submit" class="w-1/2 py-2.5 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-xl text-xs shadow-md transition-all">
+                  Simpan Perubahan
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODAL KONFIRMASI HAPUS DATA -->
+      <div id="modalDeleteConfirm" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-sm w-full p-6 text-center shadow-2xl border border-slate-100 space-y-4">
+          <div class="w-16 h-16 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-2xl mx-auto shadow-inner animate-pulse">
+            <i class="fa-solid fa-trash-can"></i>
+          </div>
+          <div>
+            <h3 class="text-base font-extrabold text-slate-800">Konfirmasi Hapus Data</h3>
+            <p id="deleteConfirmMessage" class="text-xs text-slate-500 mt-1.5 leading-relaxed">Apakah Anda yakin ingin menghapus data ini? Tindakan ini tidak dapat dibatalkan.</p>
+          </div>
+          <div class="flex items-center gap-2 pt-2">
+            <button onclick="closeModalDeleteConfirm()" class="w-1/2 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold rounded-xl text-xs transition-colors">
+              Batal
+            </button>
+            <button onclick="executeDeleteConfirm()" class="w-1/2 py-2.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl text-xs shadow-md shadow-red-600/30 transition-all">
+              Ya, Hapus
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODAL PERINGATAN UKURAN FILE LOGO TERLALU BESAR -->
+      <div id="modalWarningLogo" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-sm w-full p-6 text-center shadow-2xl border border-amber-100 space-y-4 relative overflow-hidden">
+          <div class="absolute -top-10 -right-10 w-28 h-28 bg-amber-100 rounded-full blur-2xl opacity-70"></div>
+          <div class="absolute -bottom-10 -left-10 w-28 h-28 bg-orange-100 rounded-full blur-2xl opacity-70"></div>
+
+          <div class="relative z-10 space-y-3">
+            <div class="w-16 h-16 rounded-2xl bg-amber-50 border border-amber-200 text-amber-500 flex items-center justify-center text-3xl mx-auto shadow-inner animate-bounce">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <div>
+              <h3 class="text-base font-extrabold text-slate-800">Ukuran Logo Terlalu Besar!</h3>
+              <p class="text-xs text-slate-500 mt-1.5 leading-relaxed">
+                Logo yang Anda pilih berukuran <span id="lblUkuranLogo" class="font-extrabold text-amber-600">--</span>.<br>
+                Batas maksimum ukuran file logo adalah <span class="font-extrabold text-slate-700">500 KB</span>.
+              </p>
+            </div>
+            <button onclick="closeModalWarningLogo()" class="w-full py-3 bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-extrabold rounded-xl text-xs transition-all shadow-lg shadow-amber-500/30 active:scale-[0.98]">
+              Mengerti & Pilih Ulang
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODAL NOTIFIKASI TENGAH LAYAR -->
+      <div id="modalCenterNotif" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-sm w-full p-6 text-center shadow-2xl border border-slate-100 space-y-4">
+          <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl mx-auto shadow-inner">
+            <i class="fa-solid fa-circle-check"></i>
+          </div>
+          <div>
+            <h3 id="centerNotifTitle" class="text-base font-extrabold text-slate-800">Berhasil!</h3>
+            <p id="centerNotifMessage" class="text-xs text-slate-500 mt-1 whitespace-pre-line">Informasi telah diperbarui.</p>
+          </div>
+          <button onclick="closeModalCenterNotif()" class="w-full py-2.5 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded-xl text-xs transition-all shadow-md">
+            Tutup
+          </button>
+        </div>
+      </div>
+
+      <!-- MODAL TAMBAH USER -->
+      <div id="modalTambahUser" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-100 space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <h3 id="titleModalTambahUser" class="font-extrabold text-slate-800 text-base">Tambah User Baru</h3>
+            <button onclick="closeModalTambahUser()" class="text-slate-400 hover:text-slate-600">
+              <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+          </div>
+
+          <form id="formTambahUser" onsubmit="handleSaveUserBaru(event)" class="space-y-3">
+            <input type="hidden" id="addUserRole">
+
+            <div id="boxFieldNisNip">
+              <label id="lblNisNip" class="block text-xs font-bold text-slate-600 uppercase mb-1">NIS/NISN</label>
+              <input type="text" id="addNisNip" required class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs font-medium focus:ring-2 focus:ring-sky-500 outline-none">
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Nama Lengkap</label>
+              <input type="text" id="addNamaLengkap" required class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs font-medium focus:ring-2 focus:ring-sky-500 outline-none">
+            </div>
+
+            <div id="boxFieldKelas">
+              <label id="lblKelas" class="block text-xs font-bold text-slate-600 uppercase mb-1">Kelas / Wali Kelas</label>
+              <input type="text" id="addKelas" required placeholder="Contoh: 5A" class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs font-medium focus:ring-2 focus:ring-sky-500 outline-none">
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Nama Pengguna (Username)</label>
+              <input type="text" id="addUsername" required class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs font-medium focus:ring-2 focus:ring-sky-500 outline-none">
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Kata Sandi (Password)</label>
+              <div class="relative">
+                <input type="password" id="addPassword" required class="w-full pl-3 pr-10 py-2 rounded-xl border border-slate-300 text-xs font-medium focus:ring-2 focus:ring-sky-500 outline-none">
+                <button type="button" onclick="togglePasswordVisibility('addPassword', 'eyeAddPass')" class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400">
+                  <i id="eyeAddPass" class="fa-solid fa-eye text-xs"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="pt-2 flex gap-2">
+              <button type="button" onclick="closeModalTambahUser()" class="w-1/2 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold rounded-xl text-xs">Batal</button>
+              <button type="submit" class="w-1/2 py-2.5 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-xl text-xs shadow-md">Simpan Data</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- MODAL PENGATURAN SEKOLAH -->
+      <div id="modalPengaturanSekolah" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-100 space-y-4 max-h-[90vh] overflow-y-auto">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <h3 class="font-extrabold text-slate-800 text-base flex items-center gap-2">
+              <i class="fa-solid fa-school text-sky-600"></i>
+              <span>Pengaturan Informasi Sekolah</span>
+            </h3>
+            <button onclick="closeModalPengaturanSekolah()" class="text-slate-400 hover:text-slate-600">
+              <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+          </div>
+
+          <form onsubmit="handleSaveSchoolSettings(event)" class="space-y-3">
+            <div>
+              <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Upload Logo Sekolah <span class="text-slate-400 text-[10px] font-normal">(Maks. 500 KB)</span></label>
+              <div class="flex items-center space-x-3">
+                <img id="previewSchoolLogoModal" src="https://cdn-icons-png.flaticon.com/512/2991/2991106.png" class="w-12 h-12 object-contain rounded-xl border p-1 bg-slate-50">
+                <input type="file" accept="image/*" onchange="handleSchoolLogoUpload(event)" class="text-xs text-slate-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-sky-50 file:text-sky-700 hover:file:bg-sky-100">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Nama Sekolah</label>
+              <input type="text" id="cfgNamaSekolah" required class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs font-medium focus:ring-2 focus:ring-sky-500 outline-none">
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-600 uppercase mb-1">NPSN Sekolah</label>
+              <input type="text" id="cfgNpsn" required class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs font-medium focus:ring-2 focus:ring-sky-500 outline-none">
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Alamat Lengkap Sekolah</label>
+              <textarea id="cfgAlamatSekolah" rows="2" required class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs font-medium focus:ring-2 focus:ring-sky-500 outline-none"></textarea>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Nama Kepala Sekolah</label>
+                <input type="text" id="cfgNamaKepsek" required class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs font-medium focus:ring-2 focus:ring-sky-500 outline-none">
+              </div>
+              <div>
+                <label class="block text-xs font-bold text-slate-600 uppercase mb-1">NIP Kepala Sekolah</label>
+                <input type="text" id="cfgNipKepsek" required class="w-full px-3 py-2 rounded-xl border border-slate-300 text-xs font-medium focus:ring-2 focus:ring-sky-500 outline-none">
+              </div>
+            </div>
+
+            <div class="pt-2 flex gap-2">
+              <button type="button" onclick="closeModalPengaturanSekolah()" class="w-1/2 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold rounded-xl text-xs">Batal</button>
+              <button type="submit" class="w-1/2 py-2.5 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-xl text-xs shadow-md">Simpan Pengaturan</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- MODAL CETAK LAPORAN -->
+      <div id="modalCetakLaporan" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-4xl w-full p-6 shadow-2xl border border-slate-100 space-y-4 max-h-[95vh] overflow-y-auto">
+          
+          <div class="no-print flex flex-col md:flex-row items-center justify-between gap-3 border-b border-slate-200 pb-4">
+            <div>
+              <h3 class="font-extrabold text-slate-800 text-base">Cetak Laporan 7 Kebiasaan Siswa</h3>
+              <p class="text-xs text-slate-500">Pilih periode dan opsi cetak format kertas A4 standar.</p>
+            </div>
+            
+            <div class="flex items-center gap-2 flex-wrap">
+              <select id="rptJenisPeriode" onchange="generateReportData()" class="px-3 py-2 rounded-xl border border-slate-300 text-xs font-bold focus:ring-2 focus:ring-sky-500 outline-none">
+                <option value="harian">Laporan Harian</option>
+                <option value="bulanan" selected>Laporan Bulanan</option>
+                <option value="semester1">Laporan Semester 1 (Jul - Des)</option>
+                <option value="semester2">Laporan Semester 2 (Jan - Jun)</option>
+                <option value="tahunan">Laporan Tahunan</option>
+              </select>
+
+              <select id="rptTargetScope" onchange="generateReportData()" class="px-3 py-2 rounded-xl border border-slate-300 text-xs font-bold focus:ring-2 focus:ring-sky-500 outline-none">
+              </select>
+
+              <button onclick="window.print()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-xs shadow-md flex items-center gap-2">
+                <i class="fa-solid fa-print"></i> Cetak A4
+              </button>
+              <button onclick="closeModalCetakLaporan()" class="px-3 py-2 bg-slate-200 text-slate-700 font-bold rounded-xl text-xs">Tutup</button>
+            </div>
+          </div>
+
+          <!-- DOKUMEN CETAK A4 -->
+          <div id="printDocumentArea" class="print-card bg-white p-6 rounded-2xl border border-slate-200 space-y-6 text-black text-xs">
+            
+            <div class="flex items-center justify-between border-b-4 border-double border-black pb-3">
+              <img id="rptLogoSekolah" src="https://cdn-icons-png.flaticon.com/512/2991/2991106.png" class="w-20 h-20 object-contain">
+              <div class="text-center flex-grow px-4">
+                <h2 class="text-xs font-bold tracking-widest uppercase">PEMERINTAH KOTA / KABUPATEN</h2>
+                <h1 id="rptNamaSekolah" class="text-lg font-black uppercase tracking-wide">SD NEGERI HEBAT SAMARINDA</h1>
+                <p id="rptNpsn" class="text-[10px] font-semibold">NPSN: 12345678</p>
+                <p id="rptAlamatSekolah" class="text-[10px] italic">Jl. Pendidikan No. 123, Kota Samarinda, Kalimantan Timur</p>
+              </div>
+              <div class="w-20"></div>
+            </div>
+
+            <div class="text-center space-y-1">
+              <h3 class="text-sm font-black uppercase underline">LAPORAN EVALUASI 7 KEBIASAAN ANAK INDONESIA HEBAT</h3>
+              <p id="rptPeriodeJudul" class="text-xs font-bold text-slate-700">PERIODE: BULAN OKTOBER 2026</p>
+            </div>
+
+            <div id="rptInfoMeta" class="grid grid-cols-2 gap-2 border p-3 rounded-lg text-xs font-medium">
+              <div>Target Laporan: <span id="rptMetaTarget" class="font-bold">Semua Siswa Kelas 5A</span></div>
+              <div>Tanggal Cetak: <span id="rptMetaTanggal" class="font-bold">17 Oktober 2026</span></div>
+            </div>
+
+            <table class="w-full border-collapse border border-black text-[11px]">
+              <thead>
+                <tr class="bg-slate-100 border-b border-black text-center font-bold">
+                  <th class="border border-black p-1.5">No</th>
+                  <th class="border border-black p-1.5">NIS/NISN</th>
+                  <th class="border border-black p-1.5 text-left">Nama Siswa</th>
+                  <th class="border border-black p-1.5">Kelas</th>
+                  <th class="border border-black p-1.5">Total Kebiasaan Tuntas</th>
+                  <th class="border border-black p-1.5">Persentase (%)</th>
+                  <th class="border border-black p-1.5">Skor (0-100)</th>
+                  <th class="border border-black p-1.5">Predikat Penilaian</th>
+                </tr>
+              </thead>
+              <tbody id="rptTableBody" class="text-center">
+              </tbody>
+            </table>
+
+            <!-- AREA TANDA TANGAN DINAMIS -->
+            <div id="rptSignatureGrid" class="pt-8 grid grid-cols-3 gap-4 text-center text-[11px] font-medium leading-tight">
+              <div id="rptBoxOrtuTtd">
+                <p>Mengetahui,</p>
+                <p class="font-bold">Orang Tua / Wali Siswa</p>
+                <div class="h-16"></div>
+                <p class="underline font-bold">( ............................................ )</p>
+              </div>
+
+              <div id="rptBoxWaliTtd">
+                <p>Samarinda, <span id="rptTanggalTtd">17 Oktober 2026</span></p>
+                <p class="font-bold">Wali Kelas</p>
+                <div class="h-16"></div>
+                <p id="rptNamaWaliKelasTtd" class="underline font-bold">Guru Wali Kelas, S.Pd.</p>
+                <p id="rptNipWaliKelasTtd">NIP. 19850101 201001 1 001</p>
+              </div>
+
+              <div id="rptBoxKepsekTtd" class="min-w-[200px]">
+                <p id="rptHeaderKepsekTtd">Menyetujui,</p>
+                <p class="font-bold">Kepala Sekolah</p>
+                <div class="h-16"></div>
+                <p id="rptNamaKepsekTtd" class="underline font-bold">Kepala Sekolah, M.Pd.</p>
+                <p id="rptNipKepsekTtd">NIP. 19750101 199803 1 002</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- FOOTER APLIKASI -->
+    <footer class="no-print bg-white border-t border-slate-200 py-4 px-6 text-center text-xs text-slate-500 font-medium">
+      <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+        <p>© 2026 Aplikasi 7 Kebiasaan Anak Indonesia Hebat. All Rights Reserved.</p>
+        <p class="font-bold text-sky-700">Dibuat & dikembangkan oleh: Refia B.S., S.Kom., S.Pd.</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- FIREBASE SDK V10 & APPLICATION SCRIPT MODULE -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { 
+      getFirestore, collection, doc, setDoc, getDoc, getDocs, addDoc, updateDoc, deleteDoc, onSnapshot, query, where, orderBy 
+    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    const IS_PREVIEW = false;
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCS0IqrotQBQfCcUPPGESjyiCiISVXoods",
+      authDomain: "kebiasaan-anak-hebat-d2c3e.firebaseapp.com",
+      projectId: "kebiasaan-anak-hebat-d2c3e",
+      storageBucket: "kebiasaan-anak-hebat-d2c3e.firebasestorage.app",
+      messagingSenderId: "7217547027",
+      appId: "1:7217547027:web:60a9775fdc0ad4df767ce6"
+
+    };
+
+    let db = null;
+    if (!IS_PREVIEW && firebaseConfig.apiKey !== "PASTE_API_KEY_ANDA_DI_SINI") {
+      try {
+        const app = initializeApp(firebaseConfig);
+        db = getFirestore(app);
+        document.getElementById('firebaseStatusBadge')?.classList.remove('hidden');
+      } catch (err) {
+        console.error("Firebase initialization failed:", err);
+      }
+    }
+
+    window.state = {
+      schoolSettings: {
+        logo: "https://cdn-icons-png.flaticon.com/512/2991/2991106.png",
+        namaSekolah: "SD NEGERI 005 SAMARINDA ULU",
+        npsn: "30401234",
+        alamat: "Jl. Juanda No. 45, Samarinda, Kalimantan Timur",
+        namaKepsek: "Drs. H. M. Ridwan, M.Pd.",
+        nipKepsek: "19680512 199303 1 004"
+      },
+      currentUser: null,
+      adminAccount: {
+        username: "admin",
+        password: "admin"
+      },
+      activeChatMode: 'personal',
+      adminPagination: {
+        siswaPage: 1,
+        siswaLimit: 10,
+        guruPage: 1,
+        guruLimit: 10
+      },
+      guruPagination: {
+        monitoringPage: 1,
+        monitoringLimit: 10,
+        kelasSiswaPage: 1,
+        kelasSiswaLimit: 10
+      },
+      users: [
+        { id: "g1", role: "guru", nisNip: "198802102015031002", name: "Budi Santoso, S.Pd.", className: "5A", username: "guru5a", password: "123" },
+        { id: "g2", role: "guru", nisNip: "199104152019022005", name: "Siti Rahma, S.Pd.", className: "5B", username: "guru5b", password: "123" },
+        { id: "s1", role: "siswa", nisNip: "10293847", name: "Ahmad Dian Pratama", className: "5A", username: "ahmad", password: "123" },
+        { id: "s2", role: "siswa", nisNip: "10293848", name: "Siti Aisyah", className: "5A", username: "siti", password: "123" },
+        { id: "s3", role: "siswa", nisNip: "10293849", name: "Rian Hidayat", className: "5B", username: "rian", password: "123" }
+      ],
+      journals: [],
+      dailyFeedback: [
+        {
+          id: "df_s1_2026-10-17",
+          studentId: "s1",
+          date: "2026-10-17",
+          guruId: "g1",
+          readByStudent: false,
+          readByGuru: true,
+          messages: [
+            { senderRole: "siswa", text: "siap", time: "03:54 PM" },
+            { senderRole: "guru", text: "tes", time: "04:13 PM" }
+          ]
+        }
+      ],
+      generalChats: [],
+      groupChats: []
+    };
+
+    const savedData = localStorage.getItem("app7KebiasaanData");
+    if (savedData) {
+      try {
+        const parsed = JSON.parse(savedData);
+        window.state = { ...window.state, ...parsed };
+      } catch(e) {}
+    }
+
+    window.saveState = function() {
+      localStorage.setItem("app7KebiasaanData", JSON.stringify(window.state));
+    };
+
+    if (db) {
+      onSnapshot(doc(db, "settings", "schoolInfo"), (docSnap) => {
+        if (docSnap.exists()) {
+          window.state.schoolSettings = docSnap.data();
+          window.applySchoolSettingsUI();
+        }
+      });
+
+      onSnapshot(doc(db, "settings", "adminAccount"), (docSnap) => {
+        if (docSnap.exists()) window.state.adminAccount = docSnap.data();
+      });
+
+      onSnapshot(collection(db, "users"), (snapshot) => {
+        const userList = [];
+        snapshot.forEach((d) => userList.push({ id: d.id, ...d.data() }));
+        if (userList.length > 0) {
+          window.state.users = userList;
+          if (window.state.currentUser) {
+            if (window.state.currentUser.role === 'admin') {
+              window.renderTableAdminSiswa();
+              window.renderTableAdminGuru();
+            } else if (window.state.currentUser.role === 'guru') {
+              window.loadDataGuruSiswa();
+            } else if (window.state.currentUser.role === 'siswa') {
+              window.setupSiswaDashboard();
+            }
+          }
+        }
+      });
+
+      onSnapshot(collection(db, "journals"), (snapshot) => {
+        const journalList = [];
+        snapshot.forEach((d) => journalList.push({ id: d.id, ...d.data() }));
+        window.state.journals = journalList;
+        if (window.state.currentUser?.role === 'siswa') window.loadJournalSiswaByDate();
+        if (window.state.currentUser?.role === 'guru') window.loadDataGuruMonitoring();
+      });
+
+      onSnapshot(collection(db, "dailyFeedback"), (snapshot) => {
+        const fbList = [];
+        snapshot.forEach((d) => fbList.push({ id: d.id, ...d.data() }));
+        
+        const current = window.state.currentUser;
+        if (current) {
+          if (current.role === 'siswa') {
+            const newFb = fbList.find(f => f.studentId === current.id && !f.readByStudent);
+            if (newFb) {
+              playNotificationSound('feedback');
+              const lastMsg = newFb.messages ? newFb.messages[newFb.messages.length - 1] : null;
+              showToastNotification({
+                title: "Umpan Balik Guru Baru",
+                sender: `Dari: Guru Wali Kelas`,
+                message: lastMsg ? lastMsg.text : (newFb.text || "Ada tanggapan baru"),
+                avatarIcon: "fa-comment-dots",
+                avatarBg: "bg-sky-600"
+              });
+            }
+          } else if (current.role === 'guru') {
+            const newReply = fbList.find(f => f.guruId === current.id && !f.readByGuru);
+            if (newReply) {
+              const lastMsg = newReply.messages ? newReply.messages[newReply.messages.length - 1] : null;
+              if (lastMsg && lastMsg.senderRole === 'siswa') {
+                playNotificationSound('feedback');
+                const st = window.state.users.find(u => u.id === newReply.studentId);
+                const studentName = st ? st.name : "Siswa Kelas";
+                showToastNotification({
+                  title: "Balasan Umpan Balik Siswa",
+                  sender: `Dari: ${studentName}`,
+                  message: lastMsg.text,
+                  avatarIcon: "fa-reply",
+                  avatarBg: "bg-emerald-600"
+                });
+              }
+            }
+          }
+        }
+
+        window.state.dailyFeedback = fbList;
+        if (window.state.currentUser?.role === 'siswa') {
+          const tgl = document.getElementById('tglPengisianSiswa')?.value;
+          if (tgl) window.renderDailyFeedbackForSiswa(tgl);
+        }
+        if (window.state.currentUser?.role === 'guru') window.loadDataGuruMonitoring();
+      });
+
+      onSnapshot(collection(db, "generalChats"), (snapshot) => {
+        const chatList = [];
+        snapshot.forEach((d) => chatList.push({ id: d.id, ...d.data() }));
+        const prevCount = window.state.generalChats.length;
+        window.state.generalChats = chatList;
+
+        const current = window.state.currentUser;
+        if (current && chatList.length > prevCount) {
+          const latestChat = chatList[chatList.length - 1];
+          if (latestChat && latestChat.receiverId === current.id && !latestChat.read) {
+            playNotificationSound('message');
+            showToastNotification({
+              title: "💬 Pesan Personal Baru",
+              sender: `Dari: ${latestChat.senderName}`,
+              message: latestChat.text,
+              avatarIcon: "fa-user",
+              avatarBg: "bg-emerald-600"
+            });
+          }
+        }
+
+        window.checkUnreadNotifications();
+        if (!document.getElementById('modalUniversalChat')?.classList.contains('hidden') && window.state.activeChatMode === 'personal') {
+          window.renderChatHistory();
+        }
+      });
+
+      onSnapshot(collection(db, "groupChats"), (snapshot) => {
+        const groupList = [];
+        snapshot.forEach((d) => groupList.push({ id: d.id, ...d.data() }));
+        const prevCount = window.state.groupChats.length;
+        window.state.groupChats = groupList;
+
+        const current = window.state.currentUser;
+        if (current && groupList.length > prevCount) {
+          const latestGroupMsg = groupList[groupList.length - 1];
+          if (latestGroupMsg && latestGroupMsg.senderId !== current.id) {
+            playNotificationSound('group');
+            showToastNotification({
+              title: "📢 Pesan Group Baru",
+              sender: `Dari: ${latestGroupMsg.senderName} (${latestGroupMsg.groupTitle || 'Group Chat'})`,
+              message: latestGroupMsg.text,
+              avatarIcon: "fa-users",
+              avatarBg: "bg-indigo-600"
+            });
+          }
+        }
+
+        window.checkUnreadNotifications();
+        if (!document.getElementById('modalUniversalChat')?.classList.contains('hidden') && window.state.activeChatMode === 'group') {
+          window.renderGroupChatHistory();
+        }
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      window.applySchoolSettingsUI();
+      document.getElementById('tglPengisianSiswa').value = new Date().toISOString().split('T')[0];
+      document.getElementById('filterTanggalGuru').value = new Date().toISOString().split('T')[0];
+    });
+
+    window.showToastNotification = function({ title, sender, message, avatarIcon = 'fa-bell', avatarBg = 'bg-sky-600' }) {
+      const container = document.getElementById('toastContainer');
+      if (!container) return;
+
+      const toast = document.createElement('div');
+      toast.className = "toast-enter bg-white/95 backdrop-blur-md rounded-2xl p-4 shadow-2xl border border-slate-100 flex items-start space-x-3 pointer-events-auto border-l-4 border-l-sky-600";
+      toast.innerHTML = `
+        <div class="w-10 h-10 rounded-xl ${avatarBg} text-white flex items-center justify-center font-bold text-sm shadow-md shrink-0">
+          <i class="fa-solid ${avatarIcon}"></i>
+        </div>
+        <div class="flex-grow min-w-0">
+          <div class="flex items-center justify-between">
+            <h4 class="text-xs font-extrabold text-slate-800 truncate">${title}</h4>
+            <span class="text-[10px] text-slate-400 font-semibold">${new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}</span>
+          </div>
+          <p class="text-[11px] font-extrabold text-sky-700 leading-tight mt-0.5 truncate">${sender}</p>
+          <p class="text-xs text-slate-600 mt-1 line-clamp-2">${message}</p>
+        </div>
+        <button onclick="dismissToast(this.parentElement)" class="text-slate-400 hover:text-slate-600 p-1">
+          <i class="fa-solid fa-xmark text-xs"></i>
+        </button>
+      `;
+
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        dismissToast(toast);
+      }, 4500);
+    };
+
+    window.dismissToast = function(toastEl) {
+      if (!toastEl || !toastEl.parentElement) return;
+      toastEl.classList.remove('toast-enter');
+      toastEl.classList.add('toast-exit');
+      setTimeout(() => {
+        if (toastEl.parentElement) toastEl.parentElement.removeChild(toastEl);
+      }, 300);
+    };
+
+    window.applySchoolSettingsUI = function() {
+      const cfg = window.state.schoolSettings;
+      document.getElementById('loginSchoolLogo').src = cfg.logo;
+      document.getElementById('loginSchoolName').innerText = cfg.namaSekolah;
+      document.getElementById('navSchoolLogo').src = cfg.logo;
+      document.getElementById('navSchoolName').innerText = cfg.namaSekolah;
+
+      document.getElementById('rptLogoSekolah').src = cfg.logo;
+      document.getElementById('rptNamaSekolah').innerText = cfg.namaSekolah;
+      document.getElementById('rptNpsn').innerText = "NPSN: " + cfg.npsn;
+      document.getElementById('rptAlamatSekolah').innerText = cfg.alamat;
+      document.getElementById('rptNamaKepsekTtd').innerText = cfg.namaKepsek;
+      document.getElementById('rptNipKepsekTtd').innerText = "NIP. " + cfg.nipKepsek;
+    };
+
+    window.togglePasswordVisibility = function(inputId, eyeIconId) {
+      const input = document.getElementById(inputId);
+      const icon = document.getElementById(eyeIconId);
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+      } else {
+        input.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+      }
+    };
+
+    window.handleLogin = function(event) {
+      event.preventDefault();
+      const uName = document.getElementById('loginUsername').value.trim();
+      const uPass = document.getElementById('loginPassword').value.trim();
+
+      if (uName === window.state.adminAccount.username && uPass === window.state.adminAccount.password) {
+        window.state.currentUser = { id: 'admin', username: 'admin', role: 'admin', name: 'Administrator Utama', nisNip: 'ADMIN001', className: 'Semua Kelas' };
+        showView('viewAdmin');
+        return;
+      }
+
+      const foundUser = window.state.users.find(u => u.username.toLowerCase() === uName.toLowerCase() && u.password === uPass);
+
+      if (foundUser) {
+        window.state.currentUser = foundUser;
+        if (foundUser.role === 'siswa') {
+          showView('viewSiswa');
+        } else if (foundUser.role === 'guru') {
+          showView('viewGuru');
+        }
+      } else {
+        window.showCenterNotif("Gagal Login", "Nama pengguna atau kata sandi salah / tidak ditemukan!");
+      }
+    };
+
+    window.logout = function() {
+      window.state.currentUser = null;
+      document.getElementById('loginUsername').value = '';
+      document.getElementById('loginPassword').value = '';
+      showView('viewLogin');
+    };
+
+    function showView(viewId) {
+      ['viewLogin', 'viewSiswa', 'viewGuru', 'viewAdmin'].forEach(id => {
+        document.getElementById(id).classList.add('hidden');
+      });
+
+      document.getElementById(viewId).classList.remove('hidden');
+
+      if (viewId === 'viewLogin') {
+        document.getElementById('mainNav').classList.add('hidden');
+      } else {
+        document.getElementById('mainNav').classList.remove('hidden');
+        document.getElementById('userAvatar').innerText = window.state.currentUser.name.charAt(0).toUpperCase();
+        document.getElementById('navUserName').innerText = window.state.currentUser.name;
+        document.getElementById('navUserDetail').innerText = window.state.currentUser.role.toUpperCase() + (window.state.currentUser.className ? ` - ${window.state.currentUser.className}` : '');
+        document.getElementById('navRoleBadge').innerText = "Portal " + window.state.currentUser.role.toUpperCase();
+
+        window.checkUnreadNotifications();
+
+        if (viewId === 'viewSiswa') window.setupSiswaDashboard();
+        if (viewId === 'viewGuru') window.switchGuruTab('monitoring');
+        if (viewId === 'viewAdmin') window.switchAdminTab('siswa');
+      }
+    }
+
+    window.checkUnreadNotifications = function() {
+      const current = window.state.currentUser;
+      if (!current) return;
+
+      const unreadPersonal = window.state.generalChats.filter(c => c.receiverId === current.id && !c.read);
+      const unreadGroup = window.state.groupChats.filter(c => c.senderId !== current.id && (!c.readBy || !c.readBy.includes(current.id)));
+
+      const navBadge = document.getElementById('navUnreadChatBadge');
+      const groupBadge = document.getElementById('badgeGroupChatUnread');
+
+      let latestSender = "";
+      if (unreadPersonal.length > 0) {
+        latestSender = unreadPersonal[unreadPersonal.length - 1].senderName;
+      } else if (unreadGroup.length > 0) {
+        latestSender = unreadGroup[unreadGroup.length - 1].senderName;
+      }
+
+      if (navBadge) {
+        if (unreadPersonal.length > 0 || unreadGroup.length > 0) {
+          navBadge.innerText = `💬 Pesan dari: ${latestSender}`;
+          navBadge.classList.remove('hidden');
+        } else {
+          navBadge.classList.add('hidden');
+        }
+      }
+
+      if (groupBadge) {
+        if (unreadGroup.length > 0) {
+          const lastGroupSender = unreadGroup[unreadGroup.length - 1].senderName;
+          groupBadge.innerText = `📢 ${lastGroupSender}`;
+          groupBadge.classList.remove('hidden');
+        } else {
+          groupBadge.classList.add('hidden');
+        }
+      }
+    };
+
+    window.setupSiswaDashboard = function() {
+      const user = window.state.currentUser;
+      document.getElementById('siswaGreeting').innerText = `Selamat Datang, ${user.name}!`;
+      document.getElementById('siswaSubInfo').innerText = `Siswa Kelas ${user.className} | NIS/NISN: ${user.nisNip}`;
+
+      // MENAMPILKAN NAMA WALI KELAS BERDASARKAN KELAS SISWA
+      const waliKelas = window.state.users.find(u => u.role === 'guru' && u.className === user.className);
+      const namaWaliEl = document.getElementById('siswaNamaWaliKelas');
+      if (namaWaliEl) {
+        namaWaliEl.innerText = waliKelas ? waliKelas.name : 'Belum Ditentukan';
+      }
+
+      window.loadJournalSiswaByDate();
+    };
+
+    window.loadJournalSiswaByDate = function() {
+      const selectedDate = document.getElementById('tglPengisianSiswa').value || new Date().toISOString().split('T')[0];
+      const journalEntry = window.state.journals.find(j => j.studentId === window.state.currentUser.id && j.date === selectedDate);
+
+      const statusBadge = document.getElementById('journalStatusBadge');
+
+      document.getElementById('formKebiasaan').reset();
+      ['Bangun','Ibadah','Olahraga','Makan','Belajar','Masyarakat','Tidur'].forEach(h => {
+        const chk = document.getElementById('chk' + h);
+        if (chk) {
+          chk.checked = false;
+          window.toggleHabitInput('chk' + h, getHabitInputId(h));
+        }
+      });
+      document.getElementById('boxIslamSholat').classList.add('hidden');
+      document.getElementById('boxNonIslam').classList.add('hidden');
+
+      if (journalEntry) {
+        statusBadge.innerText = `Sudah Dikirim (${selectedDate})`;
+        statusBadge.className = "px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200";
+
+        if (journalEntry.bangunPagi) {
+          document.getElementById('chkBangun').checked = true;
+          document.getElementById('timeBangun').disabled = false;
+          document.getElementById('timeBangun').value = journalEntry.bangunPagi;
+        }
+
+        if (journalEntry.agama) {
+          document.getElementById('chkIbadah').checked = true;
+          document.getElementById('selAgama').disabled = false;
+          document.getElementById('selAgama').value = journalEntry.agama;
+          window.handleAgamaChange();
+
+          if (journalEntry.agama === 'Islam' && journalEntry.sholat) {
+            ['subuh','dzuhur','ashar','magrib','isya'].forEach(s => {
+              const el = document.getElementById('sholat' + capitalize(s));
+              if (el) el.checked = journalEntry.sholat.includes(s);
+            });
+          } else if (journalEntry.kegiatanIbadah) {
+            document.getElementById('txtKegiatanIbadah').value = journalEntry.kegiatanIbadah;
+          }
+        }
+
+        if (journalEntry.olahraga) {
+          document.getElementById('chkOlahraga').checked = true;
+          document.getElementById('txtOlahraga').disabled = false;
+          document.getElementById('txtOlahraga').value = journalEntry.olahraga;
+        }
+
+        if (journalEntry.makanSehat) {
+          document.getElementById('chkMakan').checked = true;
+          document.getElementById('txtMakan').disabled = false;
+          document.getElementById('txtMakan').value = journalEntry.makanSehat;
+        }
+
+        if (journalEntry.gemarBelajar) {
+          document.getElementById('chkBelajar').checked = true;
+          document.getElementById('txtBelajar').disabled = false;
+          document.getElementById('txtBelajar').value = journalEntry.gemarBelajar;
+        }
+
+        if (journalEntry.bermasyarakat) {
+          document.getElementById('chkMasyarakat').checked = true;
+          document.getElementById('txtMasyarakat').disabled = false;
+          document.getElementById('txtMasyarakat').value = journalEntry.bermasyarakat;
+        }
+
+        if (journalEntry.tidurCepat) {
+          document.getElementById('chkTidur').checked = true;
+          document.getElementById('timeTidur').disabled = false;
+          document.getElementById('timeTidur').value = journalEntry.tidurCepat;
+        }
+
+      } else {
+        statusBadge.innerText = `Belum Dikirim (${selectedDate})`;
+        statusBadge.className = "px-3 py-1 rounded-full text-xs font-bold bg-amber-50 text-amber-700 border border-amber-200";
+      }
+
+      window.renderDailyFeedbackForSiswa(selectedDate);
+    };
+
+    window.renderDailyFeedbackForSiswa = function(dateStr) {
+      const feedback = window.state.dailyFeedback.find(f => f.studentId === window.state.currentUser.id && f.date === dateStr);
+      const box = document.getElementById('boxDisplayDailyFeedback');
+      const badge = document.getElementById('badgeBlinkFeedbackHarian');
+
+      if (feedback && (feedback.messages?.length > 0 || feedback.text || feedback.studentReply)) {
+        if (!feedback.readByStudent) {
+          badge.classList.remove('hidden');
+          feedback.readByStudent = true;
+          if (db) setDoc(doc(db, "dailyFeedback", feedback.id), { readByStudent: true }, { merge: true });
+          window.saveState();
+        } else {
+          badge.classList.add('hidden');
+        }
+
+        // Susun Thread Messages
+        let messagesList = feedback.messages ? [...feedback.messages] : [];
+        if (messagesList.length === 0) {
+          if (feedback.studentReply) messagesList.push({ senderRole: 'siswa', text: feedback.studentReply, time: feedback.studentReplyTime || '' });
+          if (feedback.text) messagesList.push({ senderRole: 'guru', text: feedback.text, time: feedback.time || '' });
+        }
+
+        let historyHtml = '';
+        messagesList.forEach(m => {
+          if (m.senderRole === 'guru') {
+            historyHtml += `
+              <div class="p-3 bg-sky-50 rounded-2xl border border-sky-200 text-xs text-slate-800 space-y-1 shadow-sm text-left">
+                <div class="flex items-center justify-between font-bold text-sky-800 border-b border-sky-200/60 pb-1">
+                  <span class="flex items-center gap-1.5">👨‍🏫 Umpan Balik Guru Wali Kelas:</span>
+                  <span class="text-[10px] text-sky-700">${m.time}</span>
+                </div>
+                <p class="font-semibold pt-1 text-slate-800">${m.text}</p>
+              </div>
+            `;
+          } else {
+            historyHtml += `
+              <div class="p-3 bg-amber-50/90 rounded-2xl border border-amber-200 text-xs text-slate-800 space-y-1 shadow-sm text-left">
+                <div class="flex items-center justify-between font-bold text-amber-800 border-b border-amber-200/60 pb-1">
+                  <span class="flex items-center gap-1.5"><i class="fa-solid fa-comment"></i> Balasan Anda (Siswa):</span>
+                  <span class="text-[10px] text-amber-700">${m.time}</span>
+                </div>
+                <p class="font-medium pt-1 italic text-slate-700">"${m.text}"</p>
+              </div>
+            `;
+          }
+        });
+
+        box.className = "p-3 rounded-2xl bg-white border border-slate-200 text-xs max-h-80 overflow-y-auto custom-scrollbar space-y-2.5";
+        box.innerHTML = `
+          ${historyHtml}
+
+          <div class="pt-2 border-t border-slate-200 space-y-2">
+            <!-- BAR EMOJI CEPAT SISWA -->
+            <div class="flex items-center gap-1 text-sm bg-slate-50 p-1.5 rounded-xl border border-slate-200">
+              <span class="text-[10px] font-bold text-slate-400 mr-1 shrink-0">Emoji Cepat:</span>
+              <button type="button" onclick="insertEmoji('inputReplyToGuru_${feedback.id}', '👍')" class="hover:scale-125 transition-transform" title="Siap">👍</button>
+              <button type="button" onclick="insertEmoji('inputReplyToGuru_${feedback.id}', '😊')" class="hover:scale-125 transition-transform" title="Senyum">😊</button>
+              <button type="button" onclick="insertEmoji('inputReplyToGuru_${feedback.id}', '🙏')" class="hover:scale-125 transition-transform" title="Terima kasih">🙏</button>
+              <button type="button" onclick="insertEmoji('inputReplyToGuru_${feedback.id}', '❤️')" class="hover:scale-125 transition-transform" title="Love">❤️</button>
+              <button type="button" onclick="insertEmoji('inputReplyToGuru_${feedback.id}', '🔥')" class="hover:scale-125 transition-transform" title="Semangat">🔥</button>
+            </div>
+
+            <form onsubmit="handleSendStudentFeedbackReply(event, '${feedback.id}')" class="flex items-center gap-2">
+              <input type="text" id="inputReplyToGuru_${feedback.id}" placeholder="Balas umpan balik guru..." required class="flex-grow px-3 py-2 rounded-xl border border-sky-300 text-xs focus:ring-2 focus:ring-sky-500 outline-none bg-white font-medium">
+              <button type="submit" class="px-3.5 py-2 bg-sky-600 hover:bg-sky-700 text-white font-bold rounded-xl text-xs shadow-sm transition-all flex items-center gap-1 shrink-0">
+                <i class="fa-solid fa-paper-plane text-[10px]"></i>
+                <span>Balas</span>
+              </button>
+            </form>
+          </div>
+        `;
+
+        box.scrollTop = box.scrollHeight;
+
+      } else {
+        badge.classList.add('hidden');
+        box.className = "p-4 rounded-2xl bg-slate-50 border border-slate-200 text-xs max-h-80 overflow-y-auto custom-scrollbar flex flex-col items-center justify-center text-slate-400 text-center italic space-y-2";
+        box.innerHTML = `Belum ada umpan balik dari Wali Kelas untuk jurnal tanggal ${dateStr}.`;
+      }
+    };
+
+    window.handleSendStudentFeedbackReply = async function(event, feedbackId) {
+      event.preventDefault();
+      const inputEl = document.getElementById(`inputReplyToGuru_${feedbackId}`);
+      if (!inputEl) return;
+      const replyText = inputEl.value.trim();
+      if (!replyText) return;
+
+      const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+      const fbIdx = window.state.dailyFeedback.findIndex(f => f.id === feedbackId);
+      if (fbIdx >= 0) {
+        let messages = window.state.dailyFeedback[fbIdx].messages ? [...window.state.dailyFeedback[fbIdx].messages] : [];
+        if (messages.length === 0) {
+          if (window.state.dailyFeedback[fbIdx].studentReply) messages.push({ senderRole: 'siswa', text: window.state.dailyFeedback[fbIdx].studentReply, time: window.state.dailyFeedback[fbIdx].studentReplyTime || '' });
+          if (window.state.dailyFeedback[fbIdx].text) messages.push({ senderRole: 'guru', text: window.state.dailyFeedback[fbIdx].text, time: window.state.dailyFeedback[fbIdx].time || '' });
+        }
+
+        messages.push({ senderRole: 'siswa', text: replyText, time: timeStr });
+
+        window.state.dailyFeedback[fbIdx].messages = messages;
+        window.state.dailyFeedback[fbIdx].studentReply = replyText;
+        window.state.dailyFeedback[fbIdx].studentReplyTime = timeStr;
+        window.state.dailyFeedback[fbIdx].readByGuru = false;
+
+        if (db) {
+          await setDoc(doc(db, "dailyFeedback", feedbackId), {
+            messages: messages,
+            studentReply: replyText,
+            studentReplyTime: timeStr,
+            readByGuru: false
+          }, { merge: true });
+        } else {
+          window.saveState();
+        }
+
+        playNotificationSound('feedback');
+        window.showToastNotification({
+          title: "Balasan Terkirim",
+          sender: "Kepada: Guru Wali Kelas",
+          message: replyText,
+          avatarIcon: "fa-paper-plane",
+          avatarBg: "bg-emerald-600"
+        });
+
+        const selectedDate = document.getElementById('tglPengisianSiswa').value;
+        window.renderDailyFeedbackForSiswa(selectedDate);
+      }
+    };
+
+    function getHabitInputId(h) {
+      if (h === 'Bangun') return 'timeBangun';
+      if (h === 'Ibadah') return 'selAgama';
+      if (h === 'Olahraga') return 'txtOlahraga';
+      if (h === 'Makan') return 'txtMakan';
+      if (h === 'Belajar') return 'txtBelajar';
+      if (h === 'Masyarakat') return 'txtMasyarakat';
+      if (h === 'Tidur') return 'timeTidur';
+      return '';
+    }
+
+    window.toggleHabitInput = function(chkId, inputId) {
+      const chk = document.getElementById(chkId);
+      const input = document.getElementById(inputId);
+      if (input) {
+        input.disabled = !chk.checked;
+        if (chk.checked) input.focus();
+      }
+    };
+
+    window.toggleIbadahInputs = function() {
+      const chk = document.getElementById('chkIbadah');
+      const selAgama = document.getElementById('selAgama');
+      selAgama.disabled = !chk.checked;
+      if (!chk.checked) {
+        document.getElementById('boxIslamSholat').classList.add('hidden');
+        document.getElementById('boxNonIslam').classList.add('hidden');
+      } else {
+        window.handleAgamaChange();
+      }
+    };
+
+    window.handleAgamaChange = function() {
+      const val = document.getElementById('selAgama').value;
+      const boxIslam = document.getElementById('boxIslamSholat');
+      const boxNonIslam = document.getElementById('boxNonIslam');
+
+      if (val === 'Islam') {
+        boxIslam.classList.remove('hidden');
+        boxNonIslam.classList.add('hidden');
+      } else if (val) {
+        boxIslam.classList.add('hidden');
+        boxNonIslam.classList.remove('hidden');
+      } else {
+        boxIslam.classList.add('hidden');
+        boxNonIslam.classList.add('hidden');
+      }
+    };
+
+    window.simpanJurnalSiswa = async function(event) {
+      event.preventDefault();
+      const selectedDate = document.getElementById('tglPengisianSiswa').value || new Date().toISOString().split('T')[0];
+
+      let completedHabits = 0;
+      if (document.getElementById('chkBangun').checked && document.getElementById('timeBangun').value) completedHabits++;
+      if (document.getElementById('chkIbadah').checked && document.getElementById('selAgama').value) completedHabits++;
+      if (document.getElementById('chkOlahraga').checked && document.getElementById('txtOlahraga').value) completedHabits++;
+      if (document.getElementById('chkMakan').checked && document.getElementById('txtMakan').value) completedHabits++;
+      if (document.getElementById('chkBelajar').checked && document.getElementById('txtBelajar').value) completedHabits++;
+      if (document.getElementById('chkMasyarakat').checked && document.getElementById('txtMasyarakat').value) completedHabits++;
+      if (document.getElementById('chkTidur').checked && document.getElementById('timeTidur').value) completedHabits++;
+
+      const score = Math.round((completedHabits / 7) * 100);
+
+      const sholatChecked = [];
+      if (document.getElementById('selAgama').value === 'Islam') {
+        ['subuh','dzuhur','ashar','magrib','isya'].forEach(s => {
+          if (document.getElementById('sholat' + capitalize(s)).checked) sholatChecked.push(s);
+        });
+      }
+
+      const journalData = {
+        studentId: window.state.currentUser.id,
+        date: selectedDate,
+        bangunPagi: document.getElementById('chkBangun').checked ? document.getElementById('timeBangun').value : "",
+        agama: document.getElementById('chkIbadah').checked ? document.getElementById('selAgama').value : "",
+        sholat: sholatChecked,
+        kegiatanIbadah: document.getElementById('txtKegiatanIbadah') ? document.getElementById('txtKegiatanIbadah').value : "",
+        olahraga: document.getElementById('chkOlahraga').checked ? document.getElementById('txtOlahraga').value : "",
+        makanSehat: document.getElementById('chkMakan').checked ? document.getElementById('txtMakan').value : "",
+        gemarBelajar: document.getElementById('chkBelajar').checked ? document.getElementById('txtBelajar').value : "",
+        bermasyarakat: document.getElementById('chkMasyarakat').checked ? document.getElementById('txtMasyarakat').value : "",
+        tidurCepat: document.getElementById('chkTidur').checked ? document.getElementById('timeTidur').value : "",
+        score: score
+      };
+
+      const docId = `j_${window.state.currentUser.id}_${selectedDate}`;
+      
+      if (db) {
+        await setDoc(doc(db, "journals", docId), { id: docId, ...journalData }, { merge: true });
+      } else {
+        const idx = window.state.journals.findIndex(j => j.studentId === window.state.currentUser.id && j.date === selectedDate);
+        if (idx >= 0) {
+          window.state.journals[idx] = { id: docId, ...journalData };
+        } else {
+          window.state.journals.push({ id: docId, ...journalData });
+        }
+        window.saveState();
+      }
+
+      playNotificationSound('message');
+      window.showCenterNotif("Jurnal Terkirim!", `Jurnal tanggal ${selectedDate} berhasil disimpan. Skor Kebiasaan: ${score}/100`);
+      window.loadJournalSiswaByDate();
+    };
+
+    window.switchGuruTab = function(tabName) {
+      document.getElementById('guruTabBtnMonitoring').className = "py-3 px-6 text-sm font-extrabold border-b-2 border-transparent text-slate-400 hover:text-slate-600 transition-colors flex items-center gap-2 whitespace-nowrap";
+      document.getElementById('guruTabBtnSiswa').className = "py-3 px-6 text-sm font-extrabold border-b-2 border-transparent text-slate-400 hover:text-slate-600 transition-colors flex items-center gap-2 whitespace-nowrap";
+      
+      document.getElementById('guruTabContentMonitoring').classList.add('hidden');
+      document.getElementById('guruTabContentSiswa').classList.add('hidden');
+
+      if (tabName === 'monitoring') {
+        document.getElementById('guruTabBtnMonitoring').className = "py-3 px-6 text-sm font-extrabold border-b-2 border-sky-600 text-sky-600 transition-colors flex items-center gap-2 whitespace-nowrap";
+        document.getElementById('guruTabContentMonitoring').classList.remove('hidden');
+        window.loadDataGuruMonitoring();
+      } else {
+        document.getElementById('guruTabBtnSiswa').className = "py-3 px-6 text-sm font-extrabold border-b-2 border-sky-600 text-sky-600 transition-colors flex items-center gap-2 whitespace-nowrap";
+        document.getElementById('guruTabContentSiswa').classList.remove('hidden');
+        window.loadDataGuruSiswa();
+      }
+    };
+
+    // FUNGSIONALITAS PAGINATION DAN LIMIT UNTUK GURU MONITORING
+    window.changeGuruMonitoringLimit = function(limitVal) {
+      if (!window.state.guruPagination) window.state.guruPagination = { monitoringPage: 1, monitoringLimit: 10, kelasSiswaPage: 1, kelasSiswaLimit: 10 };
+      window.state.guruPagination.monitoringLimit = parseInt(limitVal) || 10;
+      window.state.guruPagination.monitoringPage = 1;
+      window.loadDataGuruMonitoring();
+    };
+
+    window.changeGuruMonitoringPage = function(page) {
+      if (!window.state.guruPagination) window.state.guruPagination = { monitoringPage: 1, monitoringLimit: 10, kelasSiswaPage: 1, kelasSiswaLimit: 10 };
+      window.state.guruPagination.monitoringPage = page;
+      window.loadDataGuruMonitoring();
+    };
+
+    window.loadDataGuruMonitoring = function() {
+      const guru = window.state.currentUser;
+      document.getElementById('guruGreeting').innerText = `Wali Kelas ${guru.className} - ${guru.name}`;
+      
+      const filterDate = document.getElementById('filterTanggalGuru').value || new Date().toISOString().split('T')[0];
+      const classStudents = window.state.users.filter(u => u.role === 'siswa' && u.className === guru.className);
+
+      const tbody = document.getElementById('tableBodyGuruMonitoring');
+      tbody.innerHTML = '';
+
+      if (!window.state.guruPagination) {
+        window.state.guruPagination = { monitoringPage: 1, monitoringLimit: 10, kelasSiswaPage: 1, kelasSiswaLimit: 10 };
+      }
+
+      const limit = window.state.guruPagination.monitoringLimit || 10;
+      const total = classStudents.length;
+      const totalPages = Math.ceil(total / limit) || 1;
+
+      if (window.state.guruPagination.monitoringPage > totalPages) {
+        window.state.guruPagination.monitoringPage = totalPages;
+      }
+      const currentPage = window.state.guruPagination.monitoringPage;
+
+      const startIdx = (currentPage - 1) * limit;
+      const endIdx = Math.min(startIdx + limit, total);
+      const paginatedStudents = classStudents.slice(startIdx, endIdx);
+
+      if (total === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" class="py-6 text-center text-slate-400">Belum ada siswa di Kelas ${guru.className}. Pindah ke Tab "Data Siswa Kelas" untuk menambah siswa.</td></tr>`;
+      } else {
+        paginatedStudents.forEach((st, idx) => {
+          const rowNum = startIdx + idx + 1;
+          const j = window.state.journals.find(item => item.studentId === st.id && item.date === filterDate);
+          const hasSubmitted = !!j;
+          const score = j ? j.score : 0;
+          const fb = window.state.dailyFeedback.find(f => f.studentId === st.id && f.date === filterDate);
+
+          const hasStudentReply = fb && (fb.studentReply || fb.messages?.some(m => m.senderRole === 'siswa'));
+          const replyUnread = hasStudentReply && !fb.readByGuru;
+
+          const tr = document.createElement('tr');
+          tr.className = "hover:bg-slate-50 border-b border-slate-100 transition-colors";
+          tr.innerHTML = `
+            <td class="py-3 px-3 font-bold text-slate-400">${rowNum}</td>
+            <td class="py-3 px-3 font-mono font-semibold">${st.nisNip}</td>
+            <td class="py-3 px-3 font-bold text-slate-800">
+              <div class="flex items-center gap-1.5">
+                <span>${st.name}</span>
+                ${replyUnread ? `<span class="px-2.5 py-0.5 rounded-full text-[9px] font-black animate-blink shadow-sm">Balasan dari ${st.name}!</span>` : ''}
+              </div>
+            </td>
+            <td class="py-3 px-3 text-center">
+              <span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold ${hasSubmitted ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-700'}">
+                ${hasSubmitted ? 'Selesai' : 'Belum Mengisi'}
+              </span>
+            </td>
+            <td class="py-3 px-3 text-center font-bold text-sky-700">${score}/100</td>
+            <td class="py-3 px-3 text-center">
+              <button onclick="openModalDailyFeedbackGuru('${st.id}', '${filterDate}')" class="px-3 py-1.5 ${hasStudentReply ? 'bg-amber-100 text-amber-900 border-amber-300' : fb ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-sky-50 text-sky-700 border-sky-200'} hover:bg-sky-100 font-bold rounded-xl border text-xs flex items-center justify-center gap-1 mx-auto shadow-sm">
+                <i class="fa-solid ${hasStudentReply ? 'fa-comments' : fb ? 'fa-pen-to-square' : 'fa-plus'}"></i>
+                <span>${hasStudentReply ? `Balasan ${st.name}` : fb ? 'Edit Umpan Balik' : 'Beri Umpan Balik'}</span>
+              </button>
+            </td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+
+      window.renderPaginationControls('paginationGuruMonitoring', currentPage, totalPages, total, startIdx, endIdx, 'GuruMonitoring');
+    };
+
+    window.openModalDailyFeedbackGuru = function(studentId, dateStr) {
+      const st = window.state.users.find(u => u.id === studentId);
+      const fb = window.state.dailyFeedback.find(f => f.studentId === studentId && f.date === dateStr);
+
+      document.getElementById('feedbackStudentId').value = studentId;
+      document.getElementById('feedbackJournalDate').value = dateStr;
+      document.getElementById('modalFeedbackStudentName').innerText = `Respon Harian: ${st ? st.name : ''}`;
+      document.getElementById('modalFeedbackDate').innerText = `Tanggal: ${dateStr}`;
+      
+      document.getElementById('txtDailyFeedbackContent').value = '';
+
+      const historyBox = document.getElementById('boxDailyFeedbackHistory');
+      historyBox.innerHTML = '';
+
+      if (fb) {
+        if (!fb.readByGuru) {
+          fb.readByGuru = true;
+          if (db) setDoc(doc(db, "dailyFeedback", fb.id), { readByGuru: true }, { merge: true });
+          window.saveState();
+          window.loadDataGuruMonitoring();
+        }
+
+        let messagesList = fb.messages ? [...fb.messages] : [];
+        if (messagesList.length === 0) {
+          if (fb.studentReply) messagesList.push({ senderRole: 'siswa', text: fb.studentReply, time: fb.studentReplyTime || '' });
+          if (fb.text) messagesList.push({ senderRole: 'guru', text: fb.text, time: fb.time || '' });
+        }
+
+        messagesList.forEach(m => {
+          if (m.senderRole === 'siswa') {
+            historyBox.innerHTML += `
+              <div class="p-3 bg-amber-50/90 rounded-2xl border border-amber-200 text-xs text-slate-800 space-y-1 shadow-sm">
+                <div class="flex items-center justify-between font-bold text-amber-800 border-b border-amber-200/60 pb-1">
+                  <span class="flex items-center gap-1.5"><i class="fa-solid fa-comment"></i> Balasan Dari Siswa:</span>
+                  <span class="text-[10px] text-amber-700">${m.time}</span>
+                </div>
+                <p class="font-medium pt-1 italic text-slate-700">"${m.text}"</p>
+              </div>
+            `;
+          } else {
+            historyBox.innerHTML += `
+              <div class="p-3 bg-sky-50/90 rounded-2xl border border-sky-200 text-xs text-slate-800 space-y-1 shadow-sm">
+                <div class="flex items-center justify-between font-bold text-sky-800 border-b border-sky-200/60 pb-1">
+                  <span class="flex items-center gap-1.5">👨‍🏫 Umpan Balik Guru Terkirim:</span>
+                  <span class="text-[10px] text-sky-700">${m.time}</span>
+                </div>
+                <p class="font-medium pt-1 text-slate-700">"${m.text}"</p>
+              </div>
+            `;
+          }
+        });
+      } else {
+        historyBox.innerHTML = `<div class="p-4 text-center text-xs text-slate-400 italic">Belum ada riwayat percakapan umpan balik. Tuliskan catatan guru di bawah.</div>`;
+      }
+
+      historyBox.scrollTop = historyBox.scrollHeight;
+      document.getElementById('modalDailyFeedbackGuru').classList.remove('hidden');
+    };
+
+    window.closeModalDailyFeedbackGuru = function() {
+      document.getElementById('modalDailyFeedbackGuru').classList.add('hidden');
+    };
+
+    window.handleSaveDailyFeedback = async function(event) {
+      if (event) event.preventDefault();
+      const stId = document.getElementById('feedbackStudentId').value;
+      const dStr = document.getElementById('feedbackJournalDate').value;
+      const textVal = document.getElementById('txtDailyFeedbackContent').value.trim();
+
+      if (!textVal) {
+        window.showCenterNotif("Pesan Kosong", "Silakan tulis catatan / umpan balik terlebih dahulu.");
+        return;
+      }
+
+      const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const fbDocId = `df_${stId}_${dStr}`;
+
+      const existingFb = window.state.dailyFeedback.find(f => f.id === fbDocId);
+      let messages = existingFb && existingFb.messages ? [...existingFb.messages] : [];
+
+      if (messages.length === 0 && existingFb) {
+        if (existingFb.studentReply) messages.push({ senderRole: 'siswa', text: existingFb.studentReply, time: existingFb.studentReplyTime || '' });
+        if (existingFb.text) messages.push({ senderRole: 'guru', text: existingFb.text, time: existingFb.time || '' });
+      }
+
+      messages.push({ senderRole: 'guru', text: textVal, time: timeStr });
+
+      const feedbackData = {
+        id: fbDocId,
+        studentId: stId,
+        date: dStr,
+        guruId: window.state.currentUser.id,
+        text: textVal,
+        time: timeStr,
+        messages: messages,
+        readByStudent: false,
+        studentReply: existingFb ? existingFb.studentReply || '' : '',
+        studentReplyTime: existingFb ? existingFb.studentReplyTime || '' : '',
+        readByGuru: true
+      };
+
+      if (db) {
+        await setDoc(doc(db, "dailyFeedback", fbDocId), feedbackData, { merge: true });
+      } else {
+        const idx = window.state.dailyFeedback.findIndex(f => f.studentId === stId && f.date === dStr);
+        if (idx >= 0) {
+          window.state.dailyFeedback[idx] = feedbackData;
+        } else {
+          window.state.dailyFeedback.push(feedbackData);
+        }
+        window.saveState();
+      }
+
+      playNotificationSound('feedback');
+      
+      document.getElementById('txtDailyFeedbackContent').value = '';
+
+      window.showCenterNotif("Umpan Balik Disimpan!", `Catatan harian berhasil dikirim ke siswa.`);
+      
+      window.openModalDailyFeedbackGuru(stId, dStr);
+      window.loadDataGuruMonitoring();
+    };
+
+    // FUNGSIONALITAS PAGINATION DAN LIMIT UNTUK GURU DATA SISWA KELAS
+    window.changeGuruKelasSiswaLimit = function(limitVal) {
+      if (!window.state.guruPagination) window.state.guruPagination = { monitoringPage: 1, monitoringLimit: 10, kelasSiswaPage: 1, kelasSiswaLimit: 10 };
+      window.state.guruPagination.kelasSiswaLimit = parseInt(limitVal) || 10;
+      window.state.guruPagination.kelasSiswaPage = 1;
+      window.loadDataGuruSiswa();
+    };
+
+    window.changeGuruKelasSiswaPage = function(page) {
+      if (!window.state.guruPagination) window.state.guruPagination = { monitoringPage: 1, monitoringLimit: 10, kelasSiswaPage: 1, kelasSiswaLimit: 10 };
+      window.state.guruPagination.kelasSiswaPage = page;
+      window.loadDataGuruSiswa();
+    };
+
+    window.loadDataGuruSiswa = function() {
+      const guru = window.state.currentUser;
+      const classStudents = window.state.users.filter(u => u.role === 'siswa' && u.className === guru.className);
+
+      const tbody = document.getElementById('tableBodyGuruDataSiswa');
+      tbody.innerHTML = '';
+
+      if (!window.state.guruPagination) {
+        window.state.guruPagination = { monitoringPage: 1, monitoringLimit: 10, kelasSiswaPage: 1, kelasSiswaLimit: 10 };
+      }
+
+      const limit = window.state.guruPagination.kelasSiswaLimit || 10;
+      const total = classStudents.length;
+      const totalPages = Math.ceil(total / limit) || 1;
+
+      if (window.state.guruPagination.kelasSiswaPage > totalPages) {
+        window.state.guruPagination.kelasSiswaPage = totalPages;
+      }
+      const currentPage = window.state.guruPagination.kelasSiswaPage;
+
+      const startIdx = (currentPage - 1) * limit;
+      const endIdx = Math.min(startIdx + limit, total);
+      const paginatedStudents = classStudents.slice(startIdx, endIdx);
+
+      if (total === 0) {
+        tbody.innerHTML = `<tr><td colspan="6" class="py-6 text-center text-slate-400">Belum ada data siswa di Kelas ${guru.className}. Klik "Tambah Siswa Kelas".</td></tr>`;
+      } else {
+        paginatedStudents.forEach((st, idx) => {
+          const rowNum = startIdx + idx + 1;
+          const tr = document.createElement('tr');
+          tr.className = "hover:bg-slate-50 border-b border-slate-100 transition-colors";
+          tr.innerHTML = `
+            <td class="py-3 px-3 font-bold text-slate-400">${rowNum}</td>
+            <td class="py-3 px-3 font-mono font-semibold">${st.nisNip}</td>
+            <td class="py-3 px-3 font-bold text-slate-800">${st.name}</td>
+            <td class="py-3 px-3 font-mono text-sky-700">${st.username}</td>
+            <td class="py-3 px-3 font-mono">
+              <div class="flex items-center space-x-2">
+                <input type="password" id="passVis_guru_${st.id}" value="${st.password}" readonly class="bg-transparent border-none w-16 text-xs font-mono outline-none">
+                <button type="button" onclick="togglePasswordVisibility('passVis_guru_${st.id}', 'eye_guru_${st.id}')" class="text-slate-400 hover:text-slate-600">
+                  <i id="eye_guru_${st.id}" class="fa-solid fa-eye text-xs"></i>
+                </button>
+              </div>
+            </td>
+            <td class="py-3 px-3 text-center space-x-1">
+              <button onclick="openModalResetCredentialsForUser('${st.id}')" class="p-1.5 text-amber-600 hover:bg-amber-50 rounded-lg" title="Edit Username & Password">
+                <i class="fa-solid fa-key"></i>
+              </button>
+              <button onclick="hapusUser('${st.id}')" class="p-1.5 text-red-600 hover:bg-red-50 rounded-lg" title="Hapus Siswa">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+
+      window.renderPaginationControls('paginationGuruKelasSiswa', currentPage, totalPages, total, startIdx, endIdx, 'GuruKelasSiswa');
+    };
+
+    window.openModalTambahSiswaGuru = function() {
+      window.openModalTambahUser('siswa');
+      document.getElementById('addKelas').value = window.state.currentUser.className;
+      document.getElementById('addKelas').readOnly = true;
+    };
+
+    window.switchChatMode = function(mode) {
+      window.state.activeChatMode = mode;
+      const btnPersonal = document.getElementById('btnChatModePersonal');
+      const btnGroup = document.getElementById('btnChatModeGroup');
+      const boxPersonal = document.getElementById('boxPersonalFilter');
+      const boxGroup = document.getElementById('boxGroupFilter');
+
+      if (mode === 'personal') {
+        btnPersonal.className = "w-1/2 py-2.5 text-xs font-extrabold border-b-2 border-sky-600 text-sky-600 transition-colors flex items-center justify-center gap-2";
+        btnGroup.className = "w-1/2 py-2.5 text-xs font-extrabold border-b-2 border-transparent text-slate-400 hover:text-slate-600 transition-colors flex items-center justify-center gap-2 relative";
+        boxPersonal.classList.remove('hidden');
+        boxGroup.classList.add('hidden');
+        window.handleCategoryChange();
+      } else {
+        btnGroup.className = "w-1/2 py-2.5 text-xs font-extrabold border-b-2 border-sky-600 text-sky-600 transition-colors flex items-center justify-center gap-2 relative";
+        btnPersonal.className = "w-1/2 py-2.5 text-xs font-extrabold border-b-2 border-transparent text-slate-400 hover:text-slate-600 transition-colors flex items-center justify-center gap-2";
+        boxGroup.classList.remove('hidden');
+        boxPersonal.classList.add('hidden');
+        window.renderGroupChatHistory();
+      }
+    };
+
+    window.openModalUniversalChat = function() {
+      window.switchChatMode('personal');
+      document.getElementById('modalUniversalChat').classList.remove('hidden');
+    };
+
+    window.closeModalUniversalChat = function() {
+      document.getElementById('modalUniversalChat').classList.add('hidden');
+    };
+
+    window.handleCategoryChange = function() {
+      const current = window.state.currentUser;
+      const cat = document.getElementById('selChatCategory').value;
+      const boxSubClass = document.getElementById('boxSubSelectClass');
+      const selTarget = document.getElementById('selChatTargetUser');
+      selTarget.innerHTML = '';
+
+      if (cat === 'guru') {
+        boxSubClass.classList.add('hidden');
+        const teachers = window.state.users.filter(u => u.role === 'guru' && u.id !== current.id);
+        teachers.forEach(g => {
+          const hasUnread = window.state.generalChats.some(c => c.senderId === g.id && c.receiverId === current.id && !c.read);
+          const prefix = hasUnread ? "🔴 [PESAN BARU] " : "";
+          selTarget.innerHTML += `<option value="${g.id}">${prefix}${g.name} (Wali Kelas ${g.className})</option>`;
+        });
+      } else if (cat === 'kelas') {
+        boxSubClass.classList.remove('hidden');
+        const classes = [...new Set(window.state.users.filter(u => u.role === 'siswa').map(u => u.className))];
+        const selClass = document.getElementById('selChatClass');
+        selClass.innerHTML = '';
+        classes.forEach(c => {
+          selClass.innerHTML += `<option value="${c}">Kelas ${c}</option>`;
+        });
+        window.handleClassSelectChange();
+        return;
+      } else if (cat === 'admin') {
+        boxSubClass.classList.add('hidden');
+        const hasUnread = window.state.generalChats.some(c => c.senderId === 'admin' && c.receiverId === current.id && !c.read);
+        const prefix = hasUnread ? "🔴 [PESAN BARU] " : "";
+        selTarget.innerHTML = `<option value="admin">${prefix}Administrator Utama Sekolah</option>`;
+      }
+
+      window.renderChatHistory();
+    };
+
+    window.handleClassSelectChange = function() {
+      const current = window.state.currentUser;
+      const selectedClass = document.getElementById('selChatClass').value;
+      const selTarget = document.getElementById('selChatTargetUser');
+      selTarget.innerHTML = '';
+
+      const students = window.state.users.filter(u => u.role === 'siswa' && u.className === selectedClass && u.id !== current.id);
+      students.forEach(s => {
+        const hasUnread = window.state.generalChats.some(c => c.senderId === s.id && c.receiverId === current.id && !c.read);
+        const prefix = hasUnread ? "🔴 [PESAN BARU] " : "";
+        selTarget.innerHTML += `<option value="${s.id}">${prefix}${s.name} (NIS: ${s.nisNip})</option>`;
+      });
+
+      window.renderChatHistory();
+    };
+
+    window.renderChatHistory = function() {
+      const current = window.state.currentUser;
+      const targetId = document.getElementById('selChatTargetUser').value;
+      const box = document.getElementById('boxUniversalChatHistory');
+      box.innerHTML = '';
+
+      if (!targetId) {
+        box.innerHTML = `<div class="text-center text-xs text-slate-400 my-8">Pilih pengguna target untuk melihat percakapan.</div>`;
+        return;
+      }
+
+      window.state.generalChats.forEach(c => {
+        if (c.receiverId === current.id && c.senderId === targetId && !c.read) {
+          c.read = true;
+          if (db) setDoc(doc(db, "generalChats", c.id), { read: true }, { merge: true });
+        }
+      });
+      window.saveState();
+      window.checkUnreadNotifications();
+
+      const myChats = window.state.generalChats.filter(c => 
+        (c.senderId === current.id && c.receiverId === targetId) ||
+        (c.senderId === targetId && c.receiverId === current.id)
+      ).sort((a,b) => a.id.localeCompare(b.id));
+
+      if (myChats.length === 0) {
+        box.innerHTML = `<div class="text-center text-xs text-slate-400 my-8">Belum ada percakapan. Mulai kirim pesan baru di bawah.</div>`;
+        return;
+      }
+
+      myChats.forEach(c => {
+        const isMe = c.senderId === current.id;
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `flex flex-col ${isMe ? 'items-end' : 'items-start'}`;
+        msgDiv.innerHTML = `
+          <div class="max-w-[80%] px-3.5 py-2.5 rounded-2xl text-xs ${isMe ? 'bg-sky-600 text-white rounded-br-none' : 'bg-white text-slate-800 border border-slate-200 shadow-sm rounded-bl-none'}">
+            <p class="font-medium">${c.text}</p>
+            <span class="text-[9px] opacity-75 block text-right mt-1">${c.time}</span>
+          </div>
+        `;
+        box.appendChild(msgDiv);
+      });
+
+      box.scrollTop = box.scrollHeight;
+    };
+
+    window.renderGroupChatHistory = function() {
+      const current = window.state.currentUser;
+      const channel = document.getElementById('selGroupChannel').value;
+      const box = document.getElementById('boxUniversalChatHistory');
+      box.innerHTML = '';
+
+      window.state.groupChats.forEach(c => {
+        if (c.channel === channel && c.senderId !== current.id) {
+          if (!c.readBy) c.readBy = [];
+          if (!c.readBy.includes(current.id)) {
+            c.readBy.push(current.id);
+            if (db) setDoc(doc(db, "groupChats", c.id), { readBy: c.readBy }, { merge: true });
+          }
+        }
+      });
+      window.saveState();
+      window.checkUnreadNotifications();
+
+      const filteredGroupMsgs = window.state.groupChats.filter(c => c.channel === channel).sort((a,b) => a.id.localeCompare(b.id));
+
+      if (filteredGroupMsgs.length === 0) {
+        box.innerHTML = `<div class="text-center text-xs text-slate-400 my-8">Belum ada obrolan di Group ini. Jadi yang pertama mengirim pesan!</div>`;
+        return;
+      }
+
+      filteredGroupMsgs.forEach(c => {
+        const isMe = c.senderId === current.id;
+        const msgDiv = document.createElement('div');
+        msgDiv.className = `flex flex-col ${isMe ? 'items-end' : 'items-start'}`;
+        msgDiv.innerHTML = `
+          <div class="max-w-[85%] px-3.5 py-2.5 rounded-2xl text-xs ${isMe ? 'bg-indigo-600 text-white rounded-br-none' : 'bg-white text-slate-800 border border-slate-200 shadow-sm rounded-bl-none'}">
+            <div class="flex items-center gap-2 mb-1 border-b border-white/20 pb-0.5">
+              <span class="font-extrabold text-[11px] ${isMe ? 'text-indigo-100' : 'text-sky-700'}">${c.senderName}</span>
+              <span class="text-[9px] uppercase px-1.5 py-0.2 rounded ${isMe ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-600'}">${c.senderRole}</span>
+            </div>
+            <p class="font-medium">${c.text}</p>
+            <span class="text-[9px] opacity-75 block text-right mt-1">${c.time}</span>
+          </div>
+        `;
+        box.appendChild(msgDiv);
+      });
+
+      box.scrollTop = box.scrollHeight;
+    };
+
+    window.handleSendChatMessage = async function(event) {
+      event.preventDefault();
+      const current = window.state.currentUser;
+      const txtInput = document.getElementById('inputChatText');
+      const text = txtInput.value.trim();
+
+      if (!text) return;
+
+      const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+      if (window.state.activeChatMode === 'personal') {
+        const targetId = document.getElementById('selChatTargetUser').value;
+        if (!targetId) return;
+
+        const chatId = "gc_" + Date.now();
+        const newChat = {
+          id: chatId,
+          senderId: current.id,
+          senderName: current.name,
+          senderRole: current.role,
+          receiverId: targetId,
+          text: text,
+          time: timeStr,
+          read: false
+        };
+
+        if (db) {
+          await setDoc(doc(db, "generalChats", chatId), newChat);
+        } else {
+          window.state.generalChats.push(newChat);
+          window.saveState();
+        }
+
+        txtInput.value = '';
+        playNotificationSound('message');
+        window.renderChatHistory();
+
+      } else {
+        const channel = document.getElementById('selGroupChannel').value;
+        const channelSelEl = document.getElementById('selGroupChannel');
+        const channelTitle = channelSelEl.options[channelSelEl.selectedIndex].text;
+
+        const chatId = "grp_" + Date.now();
+        const newGroupMsg = {
+          id: chatId,
+          channel: channel,
+          groupTitle: channelTitle,
+          senderId: current.id,
+          senderName: current.name,
+          senderRole: current.role,
+          text: text,
+          time: timeStr,
+          readBy: [current.id]
+        };
+
+        if (db) {
+          await setDoc(doc(db, "groupChats", chatId), newGroupMsg);
+        } else {
+          window.state.groupChats.push(newGroupMsg);
+          window.saveState();
+        }
+
+        txtInput.value = '';
+        playNotificationSound('group');
+        window.renderGroupChatHistory();
+      }
+    };
+
+    window.switchAdminTab = function(tabName) {
+      ['Siswa', 'Guru', 'Account'].forEach(t => {
+        document.getElementById('tabBtn' + t).className = "py-3 px-6 text-sm font-extrabold border-b-2 border-transparent text-slate-400 hover:text-slate-600 transition-colors flex items-center gap-2 whitespace-nowrap";
+        document.getElementById('tabContent' + t).classList.add('hidden');
+      });
+
+      document.getElementById('tabBtn' + capitalize(tabName)).className = "py-3 px-6 text-sm font-extrabold border-b-2 border-sky-600 text-sky-600 transition-colors flex items-center gap-2 whitespace-nowrap";
+      document.getElementById('tabContent' + capitalize(tabName)).classList.remove('hidden');
+
+      if (tabName === 'siswa') window.renderTableAdminSiswa();
+      if (tabName === 'guru') window.renderTableAdminGuru();
+      if (tabName === 'account') {
+        document.getElementById('txtAdminUsername').value = window.state.adminAccount.username;
+        document.getElementById('txtAdminPassword').value = window.state.adminAccount.password;
+      }
+    };
+
+    // FUNGSIONALITAS PAGINATION DAN LIMIT UNTUK ADMIN SISWA
+    window.changeSiswaLimit = function(limitVal) {
+      window.state.adminPagination.siswaLimit = parseInt(limitVal) || 10;
+      window.state.adminPagination.siswaPage = 1;
+      window.renderTableAdminSiswa();
+    };
+
+    window.changeSiswaPage = function(page) {
+      window.state.adminPagination.siswaPage = page;
+      window.renderTableAdminSiswa();
+    };
+
+    window.renderTableAdminSiswa = function() {
+      const q = (document.getElementById('searchSiswaAdmin').value || '').toLowerCase();
+      const students = window.state.users.filter(u => u.role === 'siswa' && (
+        u.name.toLowerCase().includes(q) || 
+        u.nisNip.toLowerCase().includes(q) || 
+        u.className.toLowerCase().includes(q)
+      ));
+
+      const tbody = document.getElementById('tableBodyAdminSiswa');
+      tbody.innerHTML = '';
+
+      const limit = window.state.adminPagination.siswaLimit;
+      const total = students.length;
+      const totalPages = Math.ceil(total / limit) || 1;
+      
+      if (window.state.adminPagination.siswaPage > totalPages) {
+        window.state.adminPagination.siswaPage = totalPages;
+      }
+      const currentPage = window.state.adminPagination.siswaPage;
+      
+      const startIdx = (currentPage - 1) * limit;
+      const endIdx = Math.min(startIdx + limit, total);
+      const paginatedStudents = students.slice(startIdx, endIdx);
+
+      if (total === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" class="py-6 text-center text-slate-400">Tidak ada data siswa.</td></tr>`;
+      } else {
+        paginatedStudents.forEach((st, idx) => {
+          const rowNum = startIdx + idx + 1;
+          const tr = document.createElement('tr');
+          tr.className = "hover:bg-slate-50 border-b border-slate-100 transition-colors";
+          tr.innerHTML = `
+            <td class="py-3 px-3 font-bold text-slate-400">${rowNum}</td>
+            <td class="py-3 px-3 font-mono font-semibold">${st.nisNip}</td>
+            <td class="py-3 px-3 font-bold text-slate-800">${st.name}</td>
+            <td class="py-3 px-3"><span class="px-2 py-0.5 bg-slate-100 rounded font-bold">${st.className}</span></td>
+            <td class="py-3 px-3 font-mono text-sky-700">${st.username}</td>
+            <td class="py-3 px-3 font-mono">
+              <div class="flex items-center space-x-2">
+                <input type="password" id="passVis_s_${st.id}" value="${st.password}" readonly class="bg-transparent border-none w-16 text-xs font-mono outline-none">
+                <button type="button" onclick="togglePasswordVisibility('passVis_s_${st.id}', 'eye_s_${st.id}')" class="text-slate-400 hover:text-slate-600">
+                  <i id="eye_s_${st.id}" class="fa-solid fa-eye text-xs"></i>
+                </button>
+              </div>
+            </td>
+            <td class="py-3 px-3 text-center space-x-1">
+              <button onclick="openModalResetCredentialsForUser('${st.id}')" class="p-1.5 text-amber-600 hover:bg-amber-50 rounded-lg" title="Ubah Credentials">
+                <i class="fa-solid fa-key"></i>
+              </button>
+              <button onclick="hapusUser('${st.id}')" class="p-1.5 text-red-600 hover:bg-red-50 rounded-lg" title="Hapus User">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+
+      window.renderPaginationControls('paginationSiswaAdmin', currentPage, totalPages, total, startIdx, endIdx, 'Siswa');
+    };
+
+    // FUNGSIONALITAS PAGINATION DAN LIMIT UNTUK ADMIN GURU
+    window.changeGuruLimit = function(limitVal) {
+      window.state.adminPagination.guruLimit = parseInt(limitVal) || 10;
+      window.state.adminPagination.guruPage = 1;
+      window.renderTableAdminGuru();
+    };
+
+    window.changeGuruPage = function(page) {
+      window.state.adminPagination.guruPage = page;
+      window.renderTableAdminGuru();
+    };
+
+    window.renderTableAdminGuru = function() {
+      const q = (document.getElementById('searchGuruAdmin').value || '').toLowerCase();
+      const teachers = window.state.users.filter(u => u.role === 'guru' && (
+        u.name.toLowerCase().includes(q) || 
+        u.nisNip.toLowerCase().includes(q) || 
+        u.className.toLowerCase().includes(q)
+      ));
+
+      const tbody = document.getElementById('tableBodyAdminGuru');
+      tbody.innerHTML = '';
+
+      const limit = window.state.adminPagination.guruLimit;
+      const total = teachers.length;
+      const totalPages = Math.ceil(total / limit) || 1;
+
+      if (window.state.adminPagination.guruPage > totalPages) {
+        window.state.adminPagination.guruPage = totalPages;
+      }
+      const currentPage = window.state.adminPagination.guruPage;
+
+      const startIdx = (currentPage - 1) * limit;
+      const endIdx = Math.min(startIdx + limit, total);
+      const paginatedTeachers = teachers.slice(startIdx, endIdx);
+
+      if (total === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" class="py-6 text-center text-slate-400">Tidak ada data guru.</td></tr>`;
+      } else {
+        paginatedTeachers.forEach((g, idx) => {
+          const rowNum = startIdx + idx + 1;
+          const tr = document.createElement('tr');
+          tr.className = "hover:bg-slate-50 border-b border-slate-100 transition-colors";
+          tr.innerHTML = `
+            <td class="py-3 px-3 font-bold text-slate-400">${rowNum}</td>
+            <td class="py-3 px-3 font-mono font-semibold">${g.nisNip}</td>
+            <td class="py-3 px-3 font-bold text-slate-800">${g.name}</td>
+            <td class="py-3 px-3"><span class="px-2 py-0.5 bg-sky-100 text-sky-800 rounded font-bold">Wali Kelas ${g.className}</span></td>
+            <td class="py-3 px-3 font-mono text-sky-700">${g.username}</td>
+            <td class="py-3 px-3 font-mono">
+              <div class="flex items-center space-x-2">
+                <input type="password" id="passVis_g_${g.id}" value="${g.password}" readonly class="bg-transparent border-none w-16 text-xs font-mono outline-none">
+                <button type="button" onclick="togglePasswordVisibility('passVis_g_${g.id}', 'eye_g_${g.id}')" class="text-slate-400 hover:text-slate-600">
+                  <i id="eye_g_${g.id}" class="fa-solid fa-eye text-xs"></i>
+                </button>
+              </div>
+            </td>
+            <td class="py-3 px-3 text-center space-x-1">
+              <button onclick="openModalResetCredentialsForUser('${g.id}')" class="p-1.5 text-amber-600 hover:bg-amber-50 rounded-lg" title="Ubah Credentials">
+                <i class="fa-solid fa-key"></i>
+              </button>
+              <button onclick="hapusUser('${g.id}')" class="p-1.5 text-red-600 hover:bg-red-50 rounded-lg" title="Hapus User">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </td>
+          `;
+          tbody.appendChild(tr);
+        });
+      }
+
+      window.renderPaginationControls('paginationGuruAdmin', currentPage, totalPages, total, startIdx, endIdx, 'Guru');
+    };
+
+    // HELPER KONTROL TOMBOL DAN INFO HALAMAN
+    window.renderPaginationControls = function(containerId, currentPage, totalPages, totalItems, startIdx, endIdx, type) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+
+      if (totalItems === 0) {
+        container.innerHTML = `<span class="text-slate-400 italic">Tidak ada data untuk ditampilkan</span>`;
+        return;
+      }
+
+      let pageFn = '';
+      if (type === 'Siswa') pageFn = 'changeSiswaPage';
+      else if (type === 'Guru') pageFn = 'changeGuruPage';
+      else if (type === 'GuruMonitoring') pageFn = 'changeGuruMonitoringPage';
+      else if (type === 'GuruKelasSiswa') pageFn = 'changeGuruKelasSiswaPage';
+
+      let buttonsHtml = '';
+
+      // Tombol Sebelumnya (Prev)
+      buttonsHtml += `
+        <button onclick="${pageFn}(${currentPage - 1})" ${currentPage === 1 ? 'disabled class="px-2.5 py-1 bg-slate-100 text-slate-300 rounded-lg cursor-not-allowed"' : 'class="px-2.5 py-1 bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 rounded-lg shadow-sm font-bold"'}>
+          <i class="fa-solid fa-chevron-left text-[10px]"></i> Prev
+        </button>
+      `;
+
+      // Angka-angka Halaman
+      for (let p = 1; p <= totalPages; p++) {
+        if (p === 1 || p === totalPages || (p >= currentPage - 1 && p <= currentPage + 1)) {
+          buttonsHtml += `
+            <button onclick="${pageFn}(${p})" class="px-2.5 py-1 ${p === currentPage ? 'bg-sky-600 text-white font-black' : 'bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 font-bold'} rounded-lg shadow-sm">
+              ${p}
+            </button>
+          `;
+        } else if (p === currentPage - 2 || p === currentPage + 2) {
+          buttonsHtml += `<span class="px-1 text-slate-400">...</span>`;
+        }
+      }
+
+      // Tombol Selanjutnya (Next)
+      buttonsHtml += `
+        <button onclick="${pageFn}(${currentPage + 1})" ${currentPage === totalPages ? 'disabled class="px-2.5 py-1 bg-slate-100 text-slate-300 rounded-lg cursor-not-allowed"' : 'class="px-2.5 py-1 bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 rounded-lg shadow-sm font-bold"'}>
+          Next <i class="fa-solid fa-chevron-right text-[10px]"></i>
+        </button>
+      `;
+
+      container.innerHTML = `
+        <div>
+          Menampilkan <span class="font-bold text-slate-800">${totalItems > 0 ? startIdx + 1 : 0}</span> - <span class="font-bold text-slate-800">${endIdx}</span> dari <span class="font-bold text-sky-700">${totalItems}</span> data
+        </div>
+        <div class="flex items-center gap-1.5 flex-wrap">
+          ${buttonsHtml}
+        </div>
+      `;
+    };
+
+    window.handleUpdateAdminAccount = async function(event) {
+      event.preventDefault();
+      const newU = document.getElementById('txtAdminUsername').value.trim();
+      const newP = document.getElementById('txtAdminPassword').value.trim();
+
+      window.state.adminAccount = { username: newU, password: newP };
+
+      if (db) {
+        await setDoc(doc(db, "settings", "adminAccount"), window.state.adminAccount);
+      } else {
+        window.saveState();
+      }
+
+      window.showCenterNotif("Kredensial Admin Diperbarui!", `Username & Password Admin tersimpan.`);
+    };
+
+    window.handleExcelUpload = function(event, role) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = async function(e) {
+        const data = new Uint8Array(e.target.result);
+        const workbook = XLSX.read(data, { type: 'array' });
+        const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+        const jsonData = XLSX.utils.sheet_to_json(firstSheet);
+
+        let countAdded = 0;
+        for (let row of jsonData) {
+          const nisNip = String(row['NIS/NISN'] || row['NIP'] || row['NIS'] || '').trim();
+          const name = String(row['Nama Lengkap'] || row['Nama'] || '').trim();
+          const className = String(row['Kelas'] || row['Wali Kelas'] || '').trim();
+          const username = String(row['nama pengguna'] || row['Username'] || '').trim();
+          const password = String(row['password'] || row['Password'] || '123').trim();
+
+          if (name && username) {
+            const userId = "u_" + Date.now() + Math.random().toString(36).substring(2, 7);
+            const newUser = {
+              id: userId,
+              role: role,
+              nisNip: nisNip,
+              name: name,
+              className: className,
+              username: username,
+              password: password
+            };
+
+            if (db) {
+              await setDoc(doc(db, "users", userId), newUser);
+            } else {
+              window.state.users.push(newUser);
+            }
+            countAdded++;
+          }
+        }
+
+        if (!db) window.saveState();
+        window.showCenterNotif("Import Excel Sukses!", `Berhasil mengimpor ${countAdded} data ${role}.`);
+        if (role === 'siswa') window.renderTableAdminSiswa();
+        if (role === 'guru') window.renderTableAdminGuru();
+      };
+
+      reader.readAsArrayBuffer(file);
+    };
+
+    window.downloadSampleExcel = function(role) {
+      let sampleData = [];
+      if (role === 'siswa') {
+        sampleData = [
+          { "NIS/NISN": "10293850", "Nama Lengkap": "Budi Gunawan", "Kelas": "5A", "nama pengguna": "budig", "password": "123" },
+          { "NIS/NISN": "10293851", "Nama Lengkap": "Citra Lestari", "Kelas": "5A", "nama pengguna": "citral", "password": "123" }
+        ];
+      } else {
+        sampleData = [
+          { "NIP": "198503122012011003", "Nama Lengkap": "Dedi Kurniawan, S.Pd.", "Wali Kelas": "5C", "nama pengguna": "guru5c", "password": "123" }
+        ];
+      }
+
+      const ws = XLSX.utils.json_to_sheet(sampleData);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, "Format Import");
+      XLSX.writeFile(wb, `Format_Import_${role.toUpperCase()}_7Kebiasaan.xlsx`);
+    };
+
+    window.openModalResetCredentialsForUser = function(userId) {
+      const user = window.state.users.find(u => u.id === userId);
+      if (!user) return;
+
+      document.getElementById('resetUserId').value = user.id;
+      document.getElementById('resetUsername').value = user.username;
+      document.getElementById('resetPassword').value = user.password;
+
+      document.getElementById('resetPreviewName').innerText = user.name;
+      document.getElementById('resetPreviewRole').innerText = `${user.role.toUpperCase()} | ${user.nisNip} (Kelas ${user.className})`;
+      document.getElementById('resetPreviewAvatar').innerText = user.name.charAt(0).toUpperCase();
+
+      window.checkPasswordStrength(user.password);
+      document.getElementById('modalResetCredentials').classList.remove('hidden');
+    };
+
+    window.closeModalResetCredentials = function() {
+      document.getElementById('modalResetCredentials').classList.add('hidden');
+    };
+
+    window.checkPasswordStrength = function(pass) {
+      const bar = document.getElementById('passStrengthBar');
+      const txt = document.getElementById('passStrengthText');
+
+      if (!pass) {
+        bar.style.width = '0%';
+        txt.innerText = 'Sangat Lemah';
+        txt.className = 'text-slate-400';
+        return;
+      }
+
+      let score = 0;
+      if (pass.length >= 4) score += 25;
+      if (pass.length >= 8) score += 25;
+      if (/[A-Z]/.test(pass)) score += 25;
+      if (/[0-9]/.test(pass)) score += 25;
+
+      bar.style.width = `${score}%`;
+
+      if (score <= 25) {
+        bar.className = "h-full bg-red-500 transition-all duration-300";
+        txt.innerText = "Sangat Lemah";
+        txt.className = "text-red-500 font-bold";
+      } else if (score <= 50) {
+        bar.className = "h-full bg-amber-500 transition-all duration-300";
+        txt.innerText = "Cukup";
+        txt.className = "text-amber-500 font-bold";
+      } else if (score <= 75) {
+        bar.className = "h-full bg-sky-500 transition-all duration-300";
+        txt.innerText = "Kuat";
+        txt.className = "text-sky-500 font-bold";
+      } else {
+        bar.className = "h-full bg-emerald-500 transition-all duration-300";
+        txt.innerText = "Sangat Kuat";
+        txt.className = "text-emerald-500 font-bold";
+      }
+    };
+
+    window.handleSaveResetCredentials = async function(event) {
+      event.preventDefault();
+      const uId = document.getElementById('resetUserId').value;
+      const newU = document.getElementById('resetUsername').value.trim();
+      const newP = document.getElementById('resetPassword').value.trim();
+
+      const idx = window.state.users.findIndex(u => u.id === uId);
+      if (idx >= 0) {
+        window.state.users[idx].username = newU;
+        window.state.users[idx].password = newP;
+
+        if (db) {
+          await setDoc(doc(db, "users", uId), { username: newU, password: newP }, { merge: true });
+        } else {
+          window.saveState();
+        }
+
+        window.closeModalResetCredentials();
+        window.showCenterNotif("Perubahan Kredensial Berhasil!", `Kredensial diperbarui:\nUsername: ${newU}\nPassword: ${newP}`);
+
+        if (window.state.currentUser.role === 'admin') {
+          window.renderTableAdminSiswa();
+          window.renderTableAdminGuru();
+        } else if (window.state.currentUser.role === 'guru') {
+          window.loadDataGuruSiswa();
+        }
+      }
+    };
+
+    let pendingDeleteCallback = null;
+
+    window.requestDeleteConfirmation = function(message, onConfirmCallback) {
+      document.getElementById('deleteConfirmMessage').innerText = message;
+      pendingDeleteCallback = onConfirmCallback;
+      document.getElementById('modalDeleteConfirm').classList.remove('hidden');
+    };
+
+    window.closeModalDeleteConfirm = function() {
+      document.getElementById('modalDeleteConfirm').classList.add('hidden');
+      pendingDeleteCallback = null;
+    };
+
+    window.executeDeleteConfirm = function() {
+      if (typeof pendingDeleteCallback === 'function') {
+        pendingDeleteCallback();
+      }
+      window.closeModalDeleteConfirm();
+    };
+
+    window.openModalTambahUser = function(role) {
+      document.getElementById('addUserRole').value = role;
+      document.getElementById('titleModalTambahUser').innerText = role === 'siswa' ? 'Tambah Siswa Baru' : 'Tambah Guru / Wali Kelas Baru';
+      document.getElementById('lblNisNip').innerText = role === 'siswa' ? 'NIS / NISN' : 'NIP Guru';
+      document.getElementById('lblKelas').innerText = role === 'siswa' ? 'Kelas Siswa' : 'Wali Kelas';
+      document.getElementById('addKelas').readOnly = false;
+
+      document.getElementById('formTambahUser').reset();
+      document.getElementById('modalTambahUser').classList.remove('hidden');
+    };
+
+    window.closeModalTambahUser = function() {
+      document.getElementById('modalTambahUser').classList.add('hidden');
+    };
+
+    window.handleSaveUserBaru = async function(event) {
+      event.preventDefault();
+      const role = document.getElementById('addUserRole').value;
+      const uId = "u_" + Date.now();
+      const newUser = {
+        id: uId,
+        role: role,
+        nisNip: document.getElementById('addNisNip').value.trim(),
+        name: document.getElementById('addNamaLengkap').value.trim(),
+        className: document.getElementById('addKelas').value.trim(),
+        username: document.getElementById('addUsername').value.trim(),
+        password: document.getElementById('addPassword').value.trim()
+      };
+
+      if (db) {
+        await setDoc(doc(db, "users", uId), newUser);
+      } else {
+        window.state.users.push(newUser);
+        window.saveState();
+      }
+
+      window.closeModalTambahUser();
+      window.showCenterNotif("Pengguna Ditambahkan!", `Berhasil menambahkan ${newUser.name} sebagai ${role}.`);
+
+      if (window.state.currentUser.role === 'admin') {
+        window.renderTableAdminSiswa();
+        window.renderTableAdminGuru();
+      } else if (window.state.currentUser.role === 'guru') {
+        window.loadDataGuruSiswa();
+      }
+    };
+
+    window.hapusUser = function(userId) {
+      const user = window.state.users.find(u => u.id === userId);
+      const targetName = user ? user.name : 'pengguna ini';
+
+      window.requestDeleteConfirmation(
+        `Apakah Anda yakin ingin menghapus data pengguna "${targetName}"? Tindakan ini tidak dapat dibatalkan.`,
+        async () => {
+          if (db) {
+            await deleteDoc(doc(db, "users", userId));
+          } else {
+            window.state.users = window.state.users.filter(u => u.id !== userId);
+            window.saveState();
+          }
+
+          window.showCenterNotif("Pengguna Dihapus", "Data pengguna berhasil dihapus dari sistem.");
+          if (window.state.currentUser.role === 'admin') {
+            window.renderTableAdminSiswa();
+            window.renderTableAdminGuru();
+          } else if (window.state.currentUser.role === 'guru') {
+            window.loadDataGuruSiswa();
+          }
+        }
+      );
+    };
+
+    window.openModalPengaturanSekolah = function() {
+      const cfg = window.state.schoolSettings;
+      document.getElementById('previewSchoolLogoModal').src = cfg.logo;
+      document.getElementById('cfgNamaSekolah').value = cfg.namaSekolah;
+      document.getElementById('cfgNpsn').value = cfg.npsn;
+      document.getElementById('cfgAlamatSekolah').value = cfg.alamat;
+      document.getElementById('cfgNamaKepsek').value = cfg.namaKepsek;
+      document.getElementById('cfgNipKepsek').value = cfg.nipKepsek;
+
+      document.getElementById('modalPengaturanSekolah').classList.remove('hidden');
+    };
+
+    window.closeModalPengaturanSekolah = function() {
+      document.getElementById('modalPengaturanSekolah').classList.add('hidden');
+    };
+
+    window.handleSchoolLogoUpload = function(event) {
+      const file = event.target.files[0];
+      if (file) {
+        // Validasi ukuran file logo maksimal 500 KB (500 * 1024 bytes)
+        const maxSize = 500 * 1024;
+        if (file.size > maxSize) {
+          const fileSizeKB = (file.size / 1024).toFixed(1);
+          const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2);
+          const displaySize = file.size >= 1024 * 1024 ? `${fileSizeMB} MB` : `${fileSizeKB} KB`;
+
+          document.getElementById('lblUkuranLogo').innerText = displaySize;
+          document.getElementById('modalWarningLogo').classList.remove('hidden');
+          event.target.value = ''; // Reset input file
+          return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.getElementById('previewSchoolLogoModal').src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    };
+
+    window.closeModalWarningLogo = function() {
+      document.getElementById('modalWarningLogo').classList.add('hidden');
+    };
+
+    window.handleSaveSchoolSettings = async function(event) {
+      event.preventDefault();
+      window.state.schoolSettings = {
+        logo: document.getElementById('previewSchoolLogoModal').src,
+        namaSekolah: document.getElementById('cfgNamaSekolah').value.trim(),
+        npsn: document.getElementById('cfgNpsn').value.trim(),
+        alamat: document.getElementById('cfgAlamatSekolah').value.trim(),
+        namaKepsek: document.getElementById('cfgNamaKepsek').value.trim(),
+        nipKepsek: document.getElementById('cfgNipKepsek').value.trim()
+      };
+
+      if (db) {
+        await setDoc(doc(db, "settings", "schoolInfo"), window.state.schoolSettings);
+      } else {
+        window.saveState();
+      }
+
+      window.applySchoolSettingsUI();
+      window.closeModalPengaturanSekolah();
+      window.showCenterNotif("Pengaturan Sekolah Disimpan!", "Informasi sekolah & logo berhasil diperbarui.");
+    };
+
+    window.showCenterNotif = function(title, msg) {
+      document.getElementById('centerNotifTitle').innerText = title;
+      document.getElementById('centerNotifMessage').innerText = msg;
+      document.getElementById('modalCenterNotif').classList.remove('hidden');
+    };
+
+    window.closeModalCenterNotif = function() {
+      document.getElementById('modalCenterNotif').classList.add('hidden');
+    };
+
+    window.openModalCetakLaporan = function(callerRole) {
+      const scopeSel = document.getElementById('rptTargetScope');
+      scopeSel.innerHTML = '';
+
+      if (callerRole === 'guru') {
+        const myClass = window.state.currentUser.className;
+        scopeSel.innerHTML += `<option value="class_${myClass}">Semua Siswa Kelas ${myClass}</option>`;
+        
+        const myStudents = window.state.users.filter(u => u.role === 'siswa' && u.className === myClass);
+        myStudents.forEach(st => {
+          scopeSel.innerHTML += `<option value="student_${st.id}">Siswa: ${st.name}</option>`;
+        });
+
+      } else {
+        scopeSel.innerHTML += `<option value="all">Semua Kelas & Siswa</option>`;
+        const classes = [...new Set(window.state.users.filter(u => u.role === 'siswa').map(u => u.className))];
+        classes.forEach(c => {
+          scopeSel.innerHTML += `<option value="class_${c}">Siswa Kelas ${c}</option>`;
+        });
+      }
+
+      window.generateReportData();
+      document.getElementById('modalCetakLaporan').classList.remove('hidden');
+    };
+
+    window.closeModalCetakLaporan = function() {
+      document.getElementById('modalCetakLaporan').classList.add('hidden');
+    };
+
+    window.generateReportData = function() {
+      const periode = document.getElementById('rptJenisPeriode').value;
+      const targetScope = document.getElementById('rptTargetScope').value;
+      const tglFormatted = formatDateIndo(new Date());
+
+      document.getElementById('rptPeriodeJudul').innerText = `PERIODE: ${periode.toUpperCase()} (TAHUN 2026)`;
+      document.getElementById('rptMetaTanggal').innerText = tglFormatted;
+      document.getElementById('rptTanggalTtd').innerText = tglFormatted;
+
+      const boxOrtu = document.getElementById('rptBoxOrtuTtd');
+      const boxWali = document.getElementById('rptBoxWaliTtd');
+      const gridContainer = document.getElementById('rptSignatureGrid');
+      const headerKepsek = document.getElementById('rptHeaderKepsekTtd');
+
+      let targetStudents = [];
+
+      if (targetScope === 'all') {
+        targetStudents = window.state.users.filter(u => u.role === 'siswa');
+        document.getElementById('rptMetaTarget').innerText = "Semua Kelas & Siswa";
+
+        // Sembunyikan tanda tangan Orang Tua & Wali Kelas saat opsi "Semua Kelas & Siswa" dipilih
+        if (boxOrtu) boxOrtu.classList.add('hidden');
+        if (boxWali) boxWali.classList.add('hidden');
+        if (headerKepsek) headerKepsek.innerText = `Samarinda, ${tglFormatted}`;
+        if (gridContainer) {
+          gridContainer.className = "pt-8 flex justify-end text-center text-[11px] font-medium leading-tight";
+        }
+
+      } else if (targetScope.startsWith('class_')) {
+        const cls = targetScope.replace('class_', '');
+        targetStudents = window.state.users.filter(u => u.role === 'siswa' && u.className === cls);
+        document.getElementById('rptMetaTarget').innerText = `Semua Siswa Kelas ${cls}`;
+
+        if (boxOrtu) boxOrtu.classList.remove('hidden');
+        if (boxWali) boxWali.classList.remove('hidden');
+        if (headerKepsek) headerKepsek.innerText = "Menyetujui,";
+        if (gridContainer) {
+          gridContainer.className = "pt-8 grid grid-cols-3 gap-4 text-center text-[11px] font-medium leading-tight";
+        }
+
+        // Cari data wali kelas sesuai kelas yang dipilih
+        const waliGuru = window.state.users.find(u => u.role === 'guru' && u.className === cls);
+        if (waliGuru) {
+          document.getElementById('rptNamaWaliKelasTtd').innerText = waliGuru.name;
+          document.getElementById('rptNipWaliKelasTtd').innerText = "NIP. " + waliGuru.nisNip;
+        } else {
+          document.getElementById('rptNamaWaliKelasTtd').innerText = "(Guru Wali Kelas)";
+          document.getElementById('rptNipWaliKelasTtd').innerText = "NIP. -";
+        }
+
+      } else if (targetScope.startsWith('student_')) {
+        const stId = targetScope.replace('student_', '');
+        targetStudents = window.state.users.filter(u => u.id === stId);
+        const st = targetStudents[0];
+        document.getElementById('rptMetaTarget').innerText = st ? `Siswa: ${st.name} (${st.className})` : "Per-Siswa";
+
+        if (boxOrtu) boxOrtu.classList.remove('hidden');
+        if (boxWali) boxWali.classList.remove('hidden');
+        if (headerKepsek) headerKepsek.innerText = "Menyetujui,";
+        if (gridContainer) {
+          gridContainer.className = "pt-8 grid grid-cols-3 gap-4 text-center text-[11px] font-medium leading-tight";
+        }
+
+        if (st) {
+          const waliGuru = window.state.users.find(u => u.role === 'guru' && u.className === st.className);
+          if (waliGuru) {
+            document.getElementById('rptNamaWaliKelasTtd').innerText = waliGuru.name;
+            document.getElementById('rptNipWaliKelasTtd').innerText = "NIP. " + waliGuru.nisNip;
+          } else {
+            document.getElementById('rptNamaWaliKelasTtd').innerText = "(Guru Wali Kelas)";
+            document.getElementById('rptNipWaliKelasTtd').innerText = "NIP. -";
+          }
+        }
+      }
+
+      const tbody = document.getElementById('rptTableBody');
+      tbody.innerHTML = '';
+
+      targetStudents.forEach((st, idx) => {
+        const studentJournals = window.state.journals.filter(j => j.studentId === st.id);
+        const totalSubmissions = studentJournals.length;
+        
+        let avgScore = 0;
+        if (totalSubmissions > 0) {
+          const sumScore = studentJournals.reduce((acc, curr) => acc + (curr.score || 0), 0);
+          avgScore = Math.round(sumScore / totalSubmissions);
+        }
+
+        let predikat = "Perlu Bimbingan";
+        if (avgScore >= 90) predikat = "Sangat Baik";
+        else if (avgScore >= 75) predikat = "Baik";
+        else if (avgScore >= 60) predikat = "Cukup";
+
+        const tr = document.createElement('tr');
+        tr.className = "border-b border-black";
+        tr.innerHTML = `
+          <td class="border border-black p-1.5 font-bold">${idx + 1}</td>
+          <td class="border border-black p-1.5 font-mono">${st.nisNip}</td>
+          <td class="border border-black p-1.5 text-left font-bold">${st.name}</td>
+          <td class="border border-black p-1.5">${st.className}</td>
+          <td class="border border-black p-1.5">${totalSubmissions} Hari</td>
+          <td class="border border-black p-1.5 font-bold">${avgScore}%</td>
+          <td class="border border-black p-1.5 font-black text-sky-800">${avgScore}</td>
+          <td class="border border-black p-1.5 font-bold">${predikat}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    };
+
+    function capitalize(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
+    function formatDateIndo(dateObj) {
+      const months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+      return `${dateObj.getDate()} ${months[dateObj.getMonth()]} ${dateObj.getFullYear()}`;
+    }
+  </script>
+</body>
+</html>
